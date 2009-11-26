@@ -96,6 +96,18 @@ def do_import(et):
             )
             obj.multi_media_items.add(multimedia)
         
+        for child in el.findall('Materials/Material'):
+            obj.materials.create(
+                component = strip_or_none(child.find('Component').text),
+                description = strip_or_none(child.find('Description').text)
+            )
+        
+        for child in el.findall('Measurements/Measurement'):
+            obj.measurements.create(
+                part_measured =strip_or_none(child.find('PartMeasured').text),
+                description = strip_or_none(child.find('Description').text)
+            )
+        
         # If it has a PlaceMade, set that up now
         if el.find('PlaceMade/Id') is not None:
             place_made, created = m.Place.objects.get_or_create(
