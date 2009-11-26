@@ -54,7 +54,7 @@ ul {
 }
 </style>
 <h1>{{ item.name }}</h1>
-<h2>{{ item.headline }}</h2>
+<h2>{{ item.headline|default:"" }}</h2>
 
 <div class="info">
   <div class="tertiary">
