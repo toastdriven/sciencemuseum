@@ -12,17 +12,22 @@ span.highlighted {
         {{ form.what }}
         <input type="submit" value="Search">
       </p>
-
+      
         {% if page.object_list %}
             <h3>Results</h3>
-
+            
             {% for result in page.object_list %}
                 <p>
                     <strong>{{ result.verbose_name }}:</strong> <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a> - {% highlight result.text with request.GET.q %}
                     
                 </p>
-            {% empty %}
-                <p>No results found.</p>
             {% endfor %}
+        {% else %}
+          {% if request.GET.q %}
+            <p>Sorry, we didn't find anything.
+              <a href="/search/?q={{ suggestion|urlencode }}">Try {{ suggestion }} instead</a>?
+            </p>
+          {% endif %}
+        
         {% endif %}
     </form>

@@ -86,6 +86,7 @@ INSTALLED_APPS = (
 HAYSTACK_SEARCH_ENGINE = 'whoosh'
 HAYSTACK_WHOOSH_PATH = os.path.join(OUR_ROOT, 'whoosh_index')
 HAYSTACK_SITECONF = 'sciexplore.search_sites'
+HAYSTACK_INCLUDE_SPELLING = True
 
 TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.auth',
