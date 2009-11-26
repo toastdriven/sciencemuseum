@@ -1,1 +1,12 @@
-# Create your views here.
+from django.shortcuts import render_to_response as render, get_object_or_404
+import models as m
+
+def all(self):
+    return render('all.html', {
+        'items': m.MuseumObject.objects.all(),
+    })
+
+def item(self, acnum):
+    return render('item.html', {
+        'item': get_object_or_404(m.MuseumObject, accession_number = acnum),
+    })

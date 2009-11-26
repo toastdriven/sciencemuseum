@@ -20,6 +20,9 @@ class Person(models.Model):
     xml_id = models.CharField(unique = True, max_length = 20)
     name = models.CharField(max_length = 255)
     
+    def get_absolute_url(self):
+        return u'/person/%s/' % self.pk
+    
     def __unicode__(self):
         return self.name
 
@@ -92,8 +95,45 @@ class MuseumObject(models.Model):
     text = models.TextField()
     year_made = models.CharField(max_length = 255, null=True)
     
+    class Meta:
+        verbose_name = 'Item'
+    
+    def people(self):
+        "Returns people with their relationship types"
+        people = {}
+        for link in self.linked_people.select_related('person'):
+            people.setdefault(link.person, []).append(link.relationship)
+        return people.items()
+    
+    def get_absolute_url(self):
+        return u'/item/%s/' % self.accession_number
+    
+    def image_size(self, size):
+        if self.image and self.image.source:
+            return (
+                'http://www.sciencemuseum.org.uk' +
+                self.image.source.replace('size=Medium', 'size=%s' % size)
+            )
+        return None
+    
+    def image_small(self):
+        return self.image_size('Small')
+    
+    def image_inline(self):
+        return self.image_size('Inline')
+    
+    def image_medium(self):
+        return self.image_size('Medium')
+    
+    def image_large(self):
+        return self.image_size('Large')
+    
     def __unicode__(self):
-        return u'%s: %s' % (self.accession_number, self.name)
+        return u'%s: %s (%s)' % (
+            self.interpretative_date, 
+            self.name,
+            self.accession_number
+        )
 
 class Material(models.Model):
     museum_object = models.ForeignKey(MuseumObject, related_name='materials')
