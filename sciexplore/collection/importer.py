@@ -78,10 +78,23 @@ def do_import(et):
                 relationship = child.find('Relationship').text,
             )
         
-        # TODO: multi_media_items
-        # multi_media_items = models.ManyToManyField(
-        #     Multimedia, null=True, blank=True
-        # )
+        for child in el.findall('MultiMediaItems/Multimedia'):
+            multimedia, created = m.Multimedia.objects.get_or_create(
+                xml_id = child.find('Id').text.strip(),
+                defaults = {
+                    'name': strip_or_none(child.find('Name').text),
+                    'source_file': strip_or_none(
+                        child.find('SourceFile').text
+                    ),
+                    'type': strip_or_none(
+                        child.find('Type').text
+                    ),
+                    'xml_source': strip_or_none(
+                        child.find('XmlSource').text
+                    ),
+                }
+            )
+            obj.multi_media_items.add(multimedia)
         
         # If it has a PlaceMade, set that up now
         if el.find('PlaceMade/Id') is not None:
