@@ -1,0 +1,16 @@
+<style>
+ul, li {
+  list-style-type: none;
+}
+li {
+  padding-bottom: 10px;
+  width: 60%;
+  font-family: helvetica;
+  clear: both;
+}
+</style>
+<ul>
+{% for item in items %}
+  <li>{% if item.image %}<img align="left" src="{{ item.image_inline }}" width="75">{% endif %}<a href="{{ item.get_absolute_url }}">{{ item }}</a><br> {{ item.text|truncatewords:40 }}</li>
+{% endfor %}
+</ul>

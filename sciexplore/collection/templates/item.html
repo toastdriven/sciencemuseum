@@ -1,0 +1,108 @@
+<style>
+h1 {
+  font-size: 3em;
+  margin: 0;
+}
+h2 {
+  font-size: 1.5em;
+  color: #666;
+}
+h3 {
+  margin: 0;
+  padding-bottom: 1em;
+}
+div.info {
+  width: 750px;
+  clear: both;
+  float: left;
+}
+div.secondary {
+  width: 300px;
+  float: left;
+}
+
+div.tertiary {
+  width: 388px;
+  float: left;
+}
+div.polaroid {
+  border: 2px solid #666;
+  background-color: #ccc;
+  margin: 0;
+  padding: 0;
+}
+div.polaroid img {
+  display: block;
+  border: none;
+}
+div.polaroid p {
+  margin: 0;
+  padding: 2px;
+}
+div.text {
+  padding-left: 1em;
+  float: left;
+  width: 300px;
+}
+ul, li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+ul {
+  margin-bottom: 1em;
+}
+</style>
+<h1>{{ item.name }}</h1>
+<h2>{{ item.headline }}</h2>
+
+<div class="info">
+  <div class="tertiary">
+    {% if item.image %}
+    <div class="polaroid">
+      <img src="{{ item.image_small }}">
+      <p><strong>Date:</strong> {{ item.interpretative_date }}</p>
+    </div>
+    {% else %}
+    <strong>Date:</strong> {{ item.interpretative_date }}<br>
+    {% endif %}
+    {% if item.materials.all %}
+    <strong>Made of:</strong> 
+      {% for material in item.materials.all %}
+      {{ material.component }}: {{ material.description }}
+      {% if not forloop.last %}, {% endif %}
+      {% endfor %}
+      <br>
+    {% endif %}
+    {% if item.measurements.all %}
+    <strong>Measurements:</strong> 
+      {% for measurement in item.measurements.all %}
+      {{ measurement.description }}
+      {% if not forloop.last %}, {% endif %}
+      {% endfor %}
+      <br>
+    {% endif %}
+    <strong>Credit:</strong> {{ item.credit }}<br>
+  </div>
+  <div class="text">{{ item.text }}</div>
+</div>
+
+<div class="secondary">
+{% if item.people %}
+  <h3>People and organisations</h3>
+  <ul>
+  {% for p in item.people %}
+  <li><a href="{{ p.0.get_absolute_url }}">{{ p.0 }}</a> - {{ p.1|join:", " }}</li>
+  {% endfor %}
+  </ul>
+{% endif %}
+
+{% if item.celestial_bodies.all %}
+  <h3>Celestial bodies</h3>
+  <ul>
+  {% for body in item.celestial_bodies.all %}
+  <li><a href="{{ body.get_absolute_url }}">{{ body }}</a></li>
+  {% endfor %}
+  </ul>
+{% endif %}
+</div>

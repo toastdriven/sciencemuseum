@@ -1,0 +1,28 @@
+<style>
+span.highlighted {
+  background-color: yellow;
+}
+</style>
+{% load highlight %}
+    <h2>Search</h2>
+
+    <form method="get" action=".">
+      <p>
+        {{ form.q }} in 
+        {{ form.what }}
+        <input type="submit" value="Search">
+      </p>
+
+        {% if page.object_list %}
+            <h3>Results</h3>
+
+            {% for result in page.object_list %}
+                <p>
+                    <strong>{{ result.verbose_name }}:</strong> <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a> - {% highlight result.text with request.GET.q %}
+                    
+                </p>
+            {% empty %}
+                <p>No results found.</p>
+            {% endfor %}
+        {% endif %}
+    </form>
