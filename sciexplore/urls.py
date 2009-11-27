@@ -1,4 +1,6 @@
 from django.conf.urls.defaults import *
+from django.conf import settings
+import os
 
 from django.contrib import admin
 admin.autodiscover()
@@ -22,4 +24,8 @@ urlpatterns = patterns('',
     (r'^databrowse/(.*)', databrowse.site.root),
     
     (r'^search/$', MySearchView()),
+    
+    (r'^static/(?P<path>.*)$', 'django.views.static.serve', {
+        'document_root': os.path.join(settings.OUR_ROOT, 'static'),
+    }),
 )
