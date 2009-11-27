@@ -25,7 +25,9 @@ span.highlighted {
         {% else %}
           {% if request.GET.q %}
             <p>Sorry, we didn't find anything.
-              <a href="/search/?q={{ suggestion|urlencode }}">Try {{ suggestion }} instead</a>?
+              {% if suggestion %}
+                <a href="/search/?q={{ suggestion|urlencode }}">Try {{ suggestion }} instead</a>?
+              {% endif %}
             </p>
           {% endif %}
         
