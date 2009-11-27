@@ -1,4 +1,5 @@
 from django.db import models
+import re, sys
 
 class Image(models.Model):
     credit = models.CharField(max_length = 255)
@@ -19,6 +20,18 @@ class CelestialBody(models.Model):
 class Person(models.Model):
     xml_id = models.CharField(unique = True, max_length = 20)
     name = models.CharField(max_length = 255)
+    
+    def items(self):
+        "Returns items with their relationship types"
+        items = {}
+        for link in self.linkedperson_set.select_related('museum_object'):
+            items.setdefault(link.museum_object, []).append(link.relationship)
+        pairs = items.items()
+        # Sort by first 4 digits of interpretative_date, which should be year
+        pairs.sort(
+            key = lambda p: p[0].guess_year() or 3000
+        )
+        return pairs
     
     def get_absolute_url(self):
         return u'/person/%s/' % self.pk
@@ -95,6 +108,8 @@ class MuseumObject(models.Model):
     text = models.TextField()
     year_made = models.CharField(max_length = 255, null=True)
     
+    year_re = re.compile('(\d{3,4})')
+    
     class Meta:
         verbose_name = 'Item'
     
@@ -104,6 +119,14 @@ class MuseumObject(models.Model):
         for link in self.linked_people.select_related('person'):
             people.setdefault(link.person, []).append(link.relationship)
         return people.items()
+    
+    def guess_year(self):
+        "Assumes first 4 digits are the year"
+        s = self.interpretative_date or ''
+        match = self.year_re.search(s)
+        if match:
+            return int(match.group(1))
+        return None
     
     def get_absolute_url(self):
         return u'/item/%s/' % self.accession_number

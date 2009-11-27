@@ -16,6 +16,7 @@ from collection.search_views import MySearchView
 urlpatterns = patterns('',
     (r'^item/$', 'collection.views.all'),
     (r'^item/(.*)/$', 'collection.views.item'),
+    (r'^person/(\d+)/$', 'collection.views.person'),
     (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
     

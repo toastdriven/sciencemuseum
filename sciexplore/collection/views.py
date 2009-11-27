@@ -10,3 +10,8 @@ def item(self, acnum):
     return render('item.html', {
         'item': get_object_or_404(m.MuseumObject, accession_number = acnum),
     })
+
+def person(self, pk):
+    return render('person.html', {
+        'person': get_object_or_404(m.Person, pk = pk),
+    })

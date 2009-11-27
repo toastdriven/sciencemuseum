@@ -1,0 +1,19 @@
+<h1>{{ person.name }}</h1>
+
+
+<style>
+ul, li {
+  list-style-type: none;
+}
+li {
+  padding-bottom: 10px;
+  width: 60%;
+  font-family: helvetica;
+  clear: both;
+}
+</style>
+<ul>
+{% for item in person.items %}
+  <li>{% if item.0.image %}<img align="left" src="{{ item.0.image_inline }}" width="75">{% endif %}<strong>{% if item.0.interpretative_date %}{{ item.0.interpretative_date }}, {% endif %}{{ item.1|join:", " }}</strong>: <a href="{{ item.0.get_absolute_url }}">{{ item.0.name }}</a><br> {{ item.0.text }}</li>
+{% endfor %}
+</ul>
