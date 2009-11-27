@@ -17,6 +17,7 @@ urlpatterns = patterns('',
     (r'^item/$', 'collection.views.all'),
     (r'^item/(.*)/$', 'collection.views.item'),
     (r'^person/(\d+)/$', 'collection.views.person'),
+    (r'^celestial-body/(\d+)/$', 'collection.views.celestial_body'),
     (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
     

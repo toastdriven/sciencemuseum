@@ -1,0 +1,21 @@
+<h1>{{ body.common_name }}</h1>
+{% if body.alternative_name or body.astronomical_name %}
+  <h2>{{ body.alternative_name|default:"" }}{% if body.alternative_name and body.astronomical_name %}, {% endif %}{{ body.astronomical_name|default:"" }}</h2>
+{% endif %}
+
+<style>
+ul, li {
+  list-style-type: none;
+}
+li {
+  padding-bottom: 10px;
+  width: 60%;
+  font-family: helvetica;
+  clear: both;
+}
+</style>
+<ul>
+{% for item in body.museumobject_set.all %}
+  <li>{% if item.image %}<img align="left" src="{{ item.0.image_inline }}" width="75">{% endif %}{% if item.interpretative_date %}<strong>{{ item.interpretative_date }}</strong>: {% endif %}<a href="{{ item.get_absolute_url }}">{{ item.name }}</a><br> {{ item.text }}</li>
+{% endfor %}
+</ul>

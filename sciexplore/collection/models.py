@@ -14,6 +14,9 @@ class CelestialBody(models.Model):
     alternative_name = models.CharField(max_length=100, blank=True,null=True)
     astronomical_name = models.CharField(max_length=100, blank=True,null=True)
     
+    def get_absolute_url(self):
+        return u'/celestial-body/%s/' % self.pk
+    
     def __unicode__(self):
         return self.common_name
 

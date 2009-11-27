@@ -15,3 +15,8 @@ def person(self, pk):
     return render('person.html', {
         'person': get_object_or_404(m.Person, pk = pk),
     })
+
+def celestial_body(self, pk):
+    return render('celestial_body.html', {
+        'body': get_object_or_404(m.CelestialBody, pk = pk),
+    })
