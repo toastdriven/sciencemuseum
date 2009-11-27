@@ -1,18 +1,92 @@
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
-	"http://www.w3.org/TR/html4/strict.dtd">
-<html>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en-uk">
 <head>
-<title>{% block title %}{% endblock %}</title>
-{% block extra_head %}
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	<meta name="description" content="Mapping the Moon" />
+	<title>Science Museum - {% block title %}{% endblock %}</title> 
+	<link rel="alternate stylesheet" type="text/css" href="http://www.sciencemuseum.org.uk/includes/styles_text.css" title="text" media="screen" />       
+	<link rel="stylesheet" type="text/css" href="http://www.sciencemuseum.org.uk/includes/html.css" title="default" media="screen" />
+	<link rel="stylesheet" type="text/css" href="http://www.sciencemuseum.org.uk/includes/styles.css" title="default" media="screen" />
+	<link rel="stylesheet" type="text/css" href="/static/css/overrides.css" title="default" media="screen" />
 
-{% endblock %}
-<link rel="stylesheet" type="text/css" href="/static/stylesheet.css">
+	<link rel="stylesheet" type="text/css" href="http://www.sciencemuseum.org.uk/includes/handheld.css" media="handheld" />
+	<script type="text/javascript" src="/includes/jquery.js"> </script>
+
+	{% block extra_head %}
+
+	{% endblock %}
+	<link rel="stylesheet" type="text/css" href="http://www.sciencemuseum.org.uk/static/stylesheet.css">    
 </head>
 <body>
+ 
 
-{% block content %}
+<div id="container">
+	<ul class="top-nav" id="util-nav">
+		<li><a href="#content" tabindex="1" id="skip-to-content">Skip to content</a><a href="http://www.sciencemuseum.org.uk/about_us/contact_us.aspx" title="Contact us" class="last">Contact us</a>|</li>
+		<li><a href="http://www.sciencemuseum.org.uk/visitmuseum/enews.aspx" title="Sign up for our mailing lists" class="last">Sign up for our mailing lists</a>|</li>
+	</ul>
+	
+	<div id="header">
+		<div id="header-image" style="background:url('http://www.sciencemuseum.org.uk/objects/astronomy/~/media/Images/top_banners/homepage/homepageX%20jpg.ashx') no-repeat">
+			<a href="http://www.sciencemuseum.org.uk/"><img src="http://www.sciencemuseum.org.uk/images/logo.gif" width="198" height="35" alt="Science Museum logo" /></a>
+		</div>
+		<ul id="top-nav">
+			<li><a href="http://www.sciencemuseum.org.uk/" id="nav-home" title="Home">Home</a></li>
+			<li><a href="http://www.sciencemuseum.org.uk/visitmuseum.aspx" id="nav-visit" title="Visit The Museum">Visit The Museum</a></li>
+			<li><a href="http://www.sciencemuseum.org.uk/onlinestuff.aspx" id="nav-online" title="Online Stuff">Online Stuff</a></li>
+			<li><a href="http://www.sciencemuseum.org.uk/educators.aspx" id="nav-education" title="Educators">Educators</a></li>
+			<li><a href="http://www.sciencemuseum.org.uk/shoponline.aspx" id="nav-shop" title="Shop Online">Shop Online</a></li>
+			<li><a href="http://www.sciencemuseum.org.uk/about_us.aspx" id="nav-about" title="About Us">About Us</a></li>
+			<li id="nav-search">
+				<form action="http://www.sciencemuseum.org.uk/Search.aspx">
+					<div>
+						<label for="nav-search-input">
+							<input type="text" name="keywords" id="nav-search-input" value="search" />
+						</label>
+						<input type="hidden" name="results" value="10" />
+						<button type="submit" title="Search"><span>Search</span></button>
+					</div>
+				</form>
+			</li>
+		</ul>
+	</div>
 
-{% endblock %}
+
+	<div id="content" class="layout-e">                         
+                                 
+		<div class="header-block"><div><h1>{% block pagetitle %}{% endblock %}</h1></div></div>
+
+
+		<div class="col-1">
+
+			{% block content %}
+
+			{% endblock %}
+
+		</div><!-- end col-1 -->
+		
+		<div class="col-2">
+
+			{% block secondarycontent %}
+
+			{% endblock %}
+
+		</div><!-- end col-2 -->     
+		
+		<div class="clearer">&nbsp;</div>
+
+	</div><!-- end #content --> 
+
+	<ul id="footer">
+		<li><a href="http://www.nmsi.ac.uk/nmsipages/enquiries.asp" title="Enquiries/Freedom of Information" class="last">Enquiries/Freedom of Information</a>|</li>
+		<li><a href="/about_us/press_and_media.aspx" title="Press and Media" class="last">Press and Media</a>|</li>
+		<li><a href="/about_us/support_us.aspx" title="Support us" class="last">Support us</a>|</li>
+		<li><a href="/about_us/contact_us.aspx" title="Contact us" class="last">Contact us</a>|</li>
+		<li><a href="http://www.nmsi.ac.uk" title="NMSI" class="last">NMSI</a>|</li>
+	</ul>
+	
+    </div><!-- end #footer -->
+</div><!-- end #container -->   
 
 </body>
-</html>
+</html>         

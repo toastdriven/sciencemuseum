@@ -1,0 +1,54 @@
+#content ul, 
+#content li {
+  list-style-type: none;
+  margin: 0;
+  padding: 0;
+}
+#content ul {
+  margin-bottom: 1em;
+}
+#content h1 {
+  font-size: 3em;
+  margin: 0;
+}
+#content h2 {
+  font-size: 1.5em;
+  color: #666;
+}
+#content h3 {
+  margin: 0;
+  padding-bottom: 1em;
+}
+div.info {
+  width: 750px;
+  clear: both;
+  float: left;
+}
+div.secondary {
+  width: 300px;
+  float: left;
+}
+
+div.tertiary {
+  width: 388px;
+  float: left;
+}
+div.polaroid {
+  border: 2px solid #666;
+  background-color: #ccc;
+  margin: 0;
+  padding: 0;
+}
+div.polaroid img {
+  display: block;
+  border: none;
+}
+div.polaroid p {
+  margin: 0;
+  padding: 2px;
+}
+div.text {
+  padding-left: 1em;
+  float: left;
+  width: 300px;
+}
