@@ -1,3 +1,8 @@
+{% extends "base.html" %}
+                      
+{% block title %}{{ item.name }}{% endblock %}
+
+{% block extra_head %}
 <style>
 h1 {
   font-size: 3em;
@@ -52,7 +57,10 @@ ul, li {
 ul {
   margin-bottom: 1em;
 }
-</style>
+</style>    
+{% endblock %}
+
+{% block content %}
 <h1>{{ item.name }}</h1>
 <h2>{{ item.headline|default:"" }}</h2>
 
@@ -106,3 +114,5 @@ ul {
   </ul>
 {% endif %}
 </div>
+
+{% endblock %}
