@@ -123,6 +123,15 @@ class MuseumObject(models.Model):
             people.setdefault(link.person, []).append(link.relationship)
         return people.items()
     
+    def places(self):
+        "Returns places with their relationship types"
+        places = {}
+        for link in self.linked_places.select_related('person'):
+            places.setdefault(
+                link.place.place_name, []
+            ).append(link.relationship)
+        return places.items()
+    
     def guess_year(self):
         "Assumes first 4 digits are the year"
         s = self.interpretative_date or ''

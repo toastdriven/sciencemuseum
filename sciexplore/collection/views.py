@@ -1,4 +1,5 @@
 from django.shortcuts import render_to_response as render, get_object_or_404
+from django.conf import settings
 import models as m
 
 def all(self):
@@ -9,6 +10,7 @@ def all(self):
 def item(self, acnum):
     return render('item.html', {
         'item': get_object_or_404(m.MuseumObject, accession_number = acnum),
+        'maps_api_key': settings.MAPS_API_KEY
     })
 
 def person(self, pk):

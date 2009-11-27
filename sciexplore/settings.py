@@ -95,3 +95,5 @@ TEMPLATE_CONTEXT_PROCESSORS = (
     'django.core.context_processors.media',
     'django.core.context_processors.request',
 )
+
+MAPS_API_KEY = 'ABQIAAAAyYu8a7AdbfUctK3zwwu_2hQCULP4XOMyhPd8d_NrQQEO8sT8XBQQ8wbEZJ22JhSZQuxIzOKGAVxvKw'
