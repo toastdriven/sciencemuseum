@@ -72,9 +72,9 @@ jQuery(function($) {
 	
 	{% with item.related_objects as related %}{% if related %}
 		<h3>Related items</h3>
-		<ul>
+		<ul class="items">
 			{% for obj in related|slice:"3" %}
-				<li><a href="{{ obj.0.get_absolute_url }}">{{ obj.0.name }}{% if obj.0.interpretative_date %}, {{ obj.0.interpretative_date }}{% endif %}</a></li>
+				<li><a href="{{ obj.0.get_absolute_url }}">{{ obj.0.name }}</a>{% if obj.0.interpretative_date %}, date {{ obj.0.interpretative_date }}{% endif %}</a></li>
 			{% endfor %}
 		</ul>
 	{% endif %}{% endwith %}
@@ -109,6 +109,10 @@ jQuery(function($) {
 		
 				{% if item.credit %}
 					<p class="credit"><strong>Credit:</strong> {{ item.credit }}</p>
+				{% endif %}
+				
+				{% if item.image %}
+					<p class="download"><strong>Download</strong> <a href="{{ item.image_small }}">desktop wallpaper</a></p>
 				{% endif %}
 			</div>	
 		{% endif %}

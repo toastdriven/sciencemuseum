@@ -5,6 +5,16 @@
 	line-height: 1.2;
 }
 
+#content a,
+#content a:link,
+#content a:visited {
+	color: black;
+}
+#content a:hover,
+#content a:focus {
+	color: #515151;
+}
+
 #content ul, 
 #content li {
 	list-style-type: none;
@@ -21,8 +31,6 @@
 }
 
 div#content h2 {
-	font-size: 1.5em;
-	color: #666;
 	margin: 0 0 0.8em 0;
 	padding: 0;
 	clear: both;
@@ -43,8 +51,10 @@ div#content p {
 p.measurement,
 p.material,
 p.credit,
+p.download,
 #content ul.people li,
-#content ul.bodies li {
+#content ul.bodies li,
+#content ul.items li {
 	padding: 3px 0 2px 24px;
 	background-image: url(/static/img/icons/chart_bar.png);
 	background-repeat: no-repeat;
@@ -56,12 +66,19 @@ p.material {
 p.credit {
 	background-image: url(/static/img/icons/book_open.png);
 }
+p.download {
+	background-image: url(/static/img/icons/disk.png);
+}
 #content ul.people li {
 	background-image: url(/static/img/icons/user_suit.png);
 }
 #content ul.bodies li {
 	background-image: url(/static/img/icons/world.png);
 }
+#content ul.items li {
+	background-image: url(/static/img/icons/box.png);
+}
+
 /* - STRUCTURE --------------------- */
 
 div.layout-e {
@@ -101,6 +118,7 @@ div.polaroid img {
 	display: block;
 	border: 1px solid #D2D2D2;
 	padding: 2px;
+	margin-bottom: 20px;
 }
 div.polaroid p {
 	 margin: 0;
@@ -119,6 +137,7 @@ div.polaroid p {
 div#content .meta p {
 	margin: 0 0 0.3em 0;
 }
+
 .map-goes-here {
 	width: 704px;
 	height: 306px;
