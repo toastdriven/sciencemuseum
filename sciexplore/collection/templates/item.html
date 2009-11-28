@@ -6,7 +6,68 @@
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key={{ maps_api_key }}" type="text/javascript"></script>
 <script type="text/javascript">
 jQuery(function($) {
+	if (!$('.polaroid img').length) {
+		return;
+	}
+	// Add magnify icon to trigger zoomable view
+	var icon = $('<img src="/static/img/icons/magnifier_zoom_in.png" />');
+	icon.click(makeZoomable).css('cursor', 'hover');
+	var div = $('div.polaroid')
+	div.css('position', 'relative');
+	icon.css({
+		'position': 'absolute',
+		'top': div.find('img').height() - 25,
+		'left': div.find('img').width() - 25,
+		'border': 'none'
+	}).appendTo(div).attr('title', 'Show close-up view');
+	
+	function makeZoomable() {
+		var img = $('div.polaroid img:first');
+		var big_src = img.attr('src').replace('size=Small', 'size=Large');
+		img.css('opacity', 0.4);
+		var wrapper = $('<div class="img-wrapper"></div>');
+		img.wrap(wrapper);
+		wrapper.css({
+			display: 'block',
+			position: 'relative'
+		}).width(img.width()).height(img.height());
+		var loading = $('<img src="loading.gif">');
+		loading.appendTo(wrapper).css({
+			position: 'absolute',
+			top: img.height() / 2,
+			left: 15
+		});
+		var big = new Image();
+		big.src = big_src;
+		$(big).load(function() {
+			var big_width = big.width;
+			var big_height = big.height;
+			var r = big_height / img.width();
+			loading.remove();
+			var container = $('<div></div>');
+			container.width(img.width());
+			container.height(img.height());
+			container.css({
+				'background-image': 'url(' + big_src + ')',
+				'background-repeat': 'no-repeat',
+				'background-position': '0 0'
+			});
+			img.remove();
+			container.appendTo(wrapper);
+			var pos = container.offset();
+			container.mousemove(function(ev) {
+				var x = ev.pageX - pos.left;
+				var y = ev.pageY - pos.top;
+				container.css(
+					'background-position', -(r * x) + 'px ' + -(r * y) + 'px'
+				);
+			});
+		});	}
 
+});
+
+jQuery(function($) {
+  return;
   var div = $('.map-goes-here');
   if (div.length) {
     div.width(704).height(300).css('clear', 'both');
