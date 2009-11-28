@@ -61,7 +61,8 @@ p.download,
 #content ul.people li,
 #content ul.bodies li,
 #content ul.items li,
-#content ul.places li {
+#content ul.places li,
+.notification {
 	padding: 3px 0 2px 24px;
 	background-image: url(/static/img/icons/chart_bar.png);
 	background-repeat: no-repeat;
@@ -89,9 +90,19 @@ p.download {
 	background-image: url(/static/img/icons/map.png);
 	background-position: left center;
 }
-
+.notification {
+	background-image: url(/static/img/icons/information.png);
+	background-position: left center;
+}
+.error {
+	background-image: url(/static/img/icons/exclamation.png);
+	background-position: left center;
+}
 p.see-all {
 	text-align: right;
+}
+.search p.see-all {
+	text-align: left;
 }
 #content p.see-all a:link,
 #content p.see-all a:visited,
@@ -116,7 +127,11 @@ p.see-all {
 #content p.extra a {
 	background-position: right 3px;
 }
-
+#content .search p.see-all a,
+#content .search a.see-all {
+	background-position: right 0.35em;
+	white-space: normal;
+}
 #content p.see-all a:hover,
 #content p.see-all a:focus,
 #content p.see-all a:active,
@@ -135,6 +150,11 @@ p.see-all {
 	white-space: nowrap;
 }
 
+.highlighted {
+	background-color: #FAFEB9;
+	font-weight: bold;
+	color: black;
+}
 /* - STRUCTURE --------------------- */
 
 div.layout-e,
@@ -153,12 +173,25 @@ div.primary {
 	width: 298px;
 	float: right;
 }
+.search .primary {
+	float: left;
+	width:519px;
+	margin-bottom: -900em;
+	padding-bottom: 900em;
+}
 
 div.secondary {
 	width: 300px;
 	float: left;
 }
-
+.search .secondary {
+	float: right;
+	width:140px;
+	padding-left: 20px;
+	border-left: 3px solid #D2D2D2;
+	margin-bottom: -900em;
+	padding-bottom: 900em;
+}
 div.tertiary {
 	width: 386px;
 	float: left;
@@ -201,7 +234,13 @@ div.polaroid p {
 div#content .meta p {
 	margin: 0 0 0.3em 0;
 }
-
+.search-form {
+	font-size: 1.143em;
+	background-color: #E4E4E4;
+	border: 1px solid #D2D2D2;
+	padding: 10px;
+	margin-bottom: 20px;
+}
 .map-goes-here {
 	width: 704px;
 	height: 306px;
@@ -226,8 +265,31 @@ div#content .meta p {
 	padding: 2px;
 }
 
+.type-indicator {
+	font-size: 0.6em;
+	padding: 4px 9px;
+	-moz-border-radius: 3px;
+	-webkit-border-radius: 3px;
+	border-radius: 3px;
+	vertical-align: middle;
+	font-weight: normal;
+	white-space: nowrap;
+}
+.item .type-indicator {
+	background-color: #F3BF23;
+}
+.celestial-body .type-indicator {
+	background-color: #9FE530;
+}
+.person .type-indicator {
+	background-color: #51A0E9;
+}
+
 #content ul.listing li .date-indicator {
 	white-space: nowrap;
+}
+#content .search ul.listing a {
+	margin-right: 10px;
 }
 #content ul.listing li.item {
 	padding-left: 95px;

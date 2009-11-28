@@ -1,16 +1,19 @@
-<style>
-ul, li {
-  list-style-type: none;
-}
-li {
-  padding-bottom: 10px;
-  width: 60%;
-  font-family: helvetica;
-  clear: both;
-}
-</style>
-<ul>
-{% for body in bodies %}
-  <li><a href="{{ body.get_absolute_url }}">{{ body }}</a> - {{ body.num }} item{{ body.num|pluralize }}</li>
-{% endfor %}
+{% extends "base.html" %}
+
+{% block title %}All celestial bodies related to the Cosmos and Culture Exhibition{% endblock %}
+{% block pagetitle %}All celestial bodies related to the Cosmos and Culture Exhibition{% endblock %}
+
+{% block content %}
+
+<ul class="listing">
+	{% for body in bodies %}
+		<li>
+			<h3>
+				<a href="{{ body.get_absolute_url }}">{{ body }}</a> 
+				<span class="additional">&mdash; {{ body.num }} item{{ body.num|pluralize }}</span>
+			</h3>
+		</li>
+	{% endfor %}
 </ul>
+
+{% endblock %}

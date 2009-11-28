@@ -1,16 +1,16 @@
-<style>
-ul, li {
-  list-style-type: none;
-}
-li {
-  padding-bottom: 10px;
-  width: 60%;
-  font-family: helvetica;
-  clear: both;
-}
-</style>
-<ul>
-{% for person in people %}
-  <li><a href="{{ person.get_absolute_url }}">{{ person }}</a> -- {{ person.num }} item{{ person.num|pluralize }}</li>
-{% endfor %}
+{% extends "base.html" %}
+
+{% block title %}All people related to the Cosmos and Culture Exhibition{% endblock %}
+{% block pagetitle %}All people related to the Cosmos and Culture Exhibition{% endblock %}
+
+{% block content %}
+
+<ul class="listing">
+	{% for person in people %}
+		<li>
+			<h3><a href="{{ person.get_absolute_url }}">{{ person }}</a> <span class="additional">&mdash; {{ person.num }} item{{ person.num|pluralize }}</span></h3>
+		</li>
+	{% endfor %}
 </ul>
+
+{% endblock %}

@@ -10,12 +10,12 @@ ADMINS = (
 
 MANAGERS = ADMINS
 
-DATABASE_ENGINE = 'sqlite3'           # 'postgresql_psycopg2', 'postgresql', 'mysql', 'sqlite3' or 'oracle'.
-DATABASE_NAME = 'data.db'             # Or path to database file if using sqlite3.
-DATABASE_USER = ''             # Not used with sqlite3.
-DATABASE_PASSWORD = ''         # Not used with sqlite3.
-DATABASE_HOST = ''             # Set to empty string for localhost. Not used with sqlite3.
-DATABASE_PORT = ''             # Set to empty string for default. Not used with sqlite3.
+DATABASE_ENGINE = 'sqlite3'
+DATABASE_NAME = os.path.join(OUR_ROOT, 'data.db')
+DATABASE_USER = ''
+DATABASE_PASSWORD = ''
+DATABASE_HOST = ''
+DATABASE_PORT = ''
 
 # Local time zone for this installation. Choices can be found here:
 # http://en.wikipedia.org/wiki/List_of_tz_zones_by_name
@@ -97,3 +97,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MAPS_API_KEY = 'ABQIAAAAyYu8a7AdbfUctK3zwwu_2hQCULP4XOMyhPd8d_NrQQEO8sT8XBQQ8wbEZJ22JhSZQuxIzOKGAVxvKw'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+

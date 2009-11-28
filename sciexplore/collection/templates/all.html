@@ -11,7 +11,7 @@
 			{% if item.image %}
 				<img src="{{ item.image_inline }}" width="75" alt="">
 			{% endif %}
-			<h3><a href="{{ item.get_absolute_url }}">{{ item.name }}</a>, {% if item.interpretative_date %}<span class="date-indicator">{{ item.interpretative_date }}</span>{% endif %}</h3>
+			<h3><a href="{{ item.get_absolute_url }}">{{ item.name }}</a> {% if item.interpretative_date %}<span class="date-indicator additional">&mdash; {{ item.interpretative_date }}</span>{% endif %}</h3>
 			
 			<p>{{ item.text|truncatewords:40 }} <a href="{{ item.get_absolute_url }}" class="see-all">read more</a></p>
 		</li>
