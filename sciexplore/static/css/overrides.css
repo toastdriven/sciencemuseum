@@ -110,7 +110,8 @@ a.see-all {
 
 /* - STRUCTURE --------------------- */
 
-div.layout-e {
+div.layout-e,
+div#header ul#top-nav {
 	background: white;
 }
 
@@ -138,7 +139,6 @@ div.tertiary {
 
 /* - COMPONENTS --------------------- */
 
-
 div.polaroid {
 	 margin: 0;
 	 padding: 0;
@@ -152,6 +152,14 @@ div.polaroid img {
 div.polaroid p {
 	 margin: 0;
 	 padding: 2px;
+}
+.hasJS .img-wrapper {
+	border: 1px solid #D2D2D2;
+	padding: 2px;
+}
+.hasJS div.polaroid .img-wrapper img {
+	border: 0;
+	padding: 0
 }
 .date {
 	font-size: 1.143em;
