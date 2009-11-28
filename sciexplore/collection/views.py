@@ -1,5 +1,6 @@
 from django.shortcuts import render_to_response as render, get_object_or_404
 from django.conf import settings
+from django.db.models import Count
 import models as m
 
 def all(self):
@@ -25,10 +26,14 @@ def celestial_body(self, pk):
 
 def all_people(self):
     return render('all_people.html', {
-        'people': m.Person.objects.all(),
+        'people': m.Person.objects.annotate(
+            num = Count('linkedperson__museum_object', distinct=True)
+        ).order_by('-num'),
     })
 
 def all_celestial_bodies(self):
     return render('all_celestial_bodies.html', {
-        'bodies': m.CelestialBody.objects.all(),
+        'bodies': m.CelestialBody.objects.annotate(
+            num = Count('museumobject')
+        ).order_by('-num')
     })

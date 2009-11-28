@@ -11,6 +11,6 @@ li {
 </style>
 <ul>
 {% for body in bodies %}
-  <li><a href="{{ body.get_absolute_url }}">{{ body }}</a></li>
+  <li><a href="{{ body.get_absolute_url }}">{{ body }}</a> - {{ body.num }} item{{ body.num|pluralize }}</li>
 {% endfor %}
 </ul>
