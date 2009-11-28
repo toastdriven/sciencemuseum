@@ -128,7 +128,7 @@ p.see-all {
 #content .extra {
 	font-size: 0.714em;
 }
-#content .additional {
+#content .page .additional {
 	font-style: italic;
 	font-weight: normal;
 	color: #8B8B8B;
@@ -205,16 +205,19 @@ div#content .meta p {
 .map-goes-here {
 	width: 704px;
 	height: 306px;
+	margin-bottom: 20px;
 }
 
 .hasJS .map-goes-here {
 	height: 300px;
+	margin-bottom: 0;
 }
 .hasJS .map-container {
 	border: 1px solid #D2D2D2;
 	padding: 2px;
 	width: 704px;
 	height: 300px;
+	margin-bottom: 20px;
 }
 .map-goes-here img {
 	display: block;
