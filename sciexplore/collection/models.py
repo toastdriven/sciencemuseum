@@ -36,6 +36,11 @@ class Person(models.Model):
         )
         return pairs
     
+    def related_people(self):
+        return Person.objects.filter(
+            linkedperson__museum_object__linked_people__person = self
+        ).exclude(pk = self.pk).distinct()
+    
     def get_absolute_url(self):
         return u'/person/%s/' % self.pk
     

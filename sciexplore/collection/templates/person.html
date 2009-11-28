@@ -16,3 +16,12 @@ li {
   <li>{% if item.0.image %}<img align="left" src="{{ item.0.image_inline }}" width="75">{% endif %}<strong>{% if item.0.interpretative_date %}{{ item.0.interpretative_date }}, {% endif %}{{ item.1|join:", " }}</strong>: <a href="{{ item.0.get_absolute_url }}">{{ item.0.name }}</a><br> {{ item.0.text }}</li>
 {% endfor %}
 </ul>
+
+{% with person.related_people as related %}{% if related %}
+	<h3>Related people and organisations</h3>
+	<ul>
+		{% for obj in related|slice:"3" %}
+			<li><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></li>
+		{% endfor %}
+	</ul>
+{% endif %}{% endwith %}
