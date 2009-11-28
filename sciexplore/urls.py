@@ -16,7 +16,7 @@ for name in dir(models):
 from collection.search_views import MySearchView
 
 urlpatterns = patterns('',
-    (r'^item/$', 'collection.views.all'),
+    (r'^items/$', 'collection.views.all'),
     (r'^item/(.*)/$', 'collection.views.item'),
     
     (r'^people/$', 'collection.views.all_people'),
