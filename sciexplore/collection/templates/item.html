@@ -10,8 +10,10 @@ jQuery(function($) {
 		return;
 	}
 	// Add magnify icon to trigger zoomable view
-	var icon = $('<img src="/static/img/icons/magnifier_zoom_in.png" />');
-	icon.click(makeZoomable).css('cursor', 'hover');
+	var icon = $(
+		'<img src="/static/img/icons/magnifier_zoom_in.png" alt="Zoom" />'
+	);
+	icon.click(makeZoomable).css('cursor', 'pointer');
 	var div = $('div.polaroid')
 	div.css('position', 'relative');
 	icon.css({
@@ -26,23 +28,37 @@ jQuery(function($) {
 		var big_src = img.attr('src').replace('size=Small', 'size=Large');
 		img.css('opacity', 0.4);
 		var wrapper = $('<div class="img-wrapper"></div>');
-		img.wrap(wrapper);
 		wrapper.css({
 			display: 'block',
-			position: 'relative'
+			position: 'relative',
+			marginBottom: '20px'
 		}).width(img.width()).height(img.height());
-		var loading = $('<img src="loading.gif">');
-		loading.appendTo(wrapper).css({
+		img.wrap(wrapper);
+		var loading = $(
+			'<img src="/static/img/icons/loading-bar.gif" alt="Loading" />'
+		);
+		loading.css({
 			position: 'absolute',
 			top: img.height() / 2,
-			left: 15
+			left: '50%',
+			border: 'none',
+			padding: 0,
+			marginLeft: '-110px'
 		});
+		$('.img-wrapper').append(loading);
+		
+		// Load the big image
 		var big = new Image();
 		big.src = big_src;
 		$(big).load(function() {
+			console.log('big image loaded...');
 			var big_width = big.width;
 			var big_height = big.height;
 			var r = big_height / img.width();
+			console.log(
+				'r = ' + r + ' big_height = ' + big_height 
+				+ ' big_width = ' + big_width
+			);
 			loading.remove();
 			var container = $('<div></div>');
 			container.width(img.width());
@@ -52,8 +68,9 @@ jQuery(function($) {
 				'background-repeat': 'no-repeat',
 				'background-position': '0 0'
 			});
-			img.remove();
-			container.appendTo(wrapper);
+			console.log(container);
+			img.hide();
+			container.appendTo($('.img-wrapper'));
 			var pos = container.offset();
 			container.mousemove(function(ev) {
 				var x = ev.pageX - pos.left;
