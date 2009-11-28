@@ -6,9 +6,7 @@
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key={{ maps_api_key }}" type="text/javascript"></script>
 <script type="text/javascript">
 jQuery(function($) {
-	
-	
-	
+
   var div = $('.map-goes-here');
   if (div.length) {
     div.width(704).height(300).css('clear', 'both');
@@ -37,7 +35,7 @@ jQuery(function($) {
       });
     });
 
-	div.wrap('<div class="map-container"></div>');
+    div.wrap('<div class="map-container"></div>');
   }
 });
 </script>
