@@ -2,3 +2,5 @@ data.db
 whoosh_index
 ve
 pip-log.txt
+*.pyc
+local_settings.py

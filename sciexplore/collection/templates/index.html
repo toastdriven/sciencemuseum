@@ -1,0 +1,20 @@
+{% extends "base.html" %}
+
+{% block title %}Cosmos and Culture{% endblock %}
+{% block pagetitle %}Cosmos and Culture{% endblock %}
+
+{% block content %}
+
+<p>We have <a href="/items/">{{ num_items }} items</a>, <a href="/people/">{{ num_people }} people</a> and organisations and <a href="/celestial-bodies/">{{ num_celestial_bodies }} celestial bodies</a>.</p>
+
+<h3>Search</h3>
+
+<form method="get" action="/search/">
+  <p>
+    {{ form.q }} in 
+    {{ form.what }}
+    <input type="submit" value="Search">
+  </p>
+</form>
+
+{% endblock %}
