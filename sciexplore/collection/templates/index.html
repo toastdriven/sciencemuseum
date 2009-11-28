@@ -19,4 +19,40 @@
   </p>
 </form>
 
+
+<p>Item: {{ random_item }}</p>
+{{ random_item.text }}
+
+<hr>
+
+<p>Person: {{ random_person }}</p>
+<ul class="listing">
+	{% for pair in random_person.items|slice:":3" %}
+		<li class="item">
+			{% if pair.0.image %}
+				<img src="{{ pair.0.image_inline }}" width="75" alt="" />
+			{% endif %}
+			<h3><a href="{{ pair.0.get_absolute_url }}">{{ pair.0.name }}</a>, <span class="additional">({{ pair.1|join:", " }})</span> {% if pair.0.interpretative_date %}<span class="date-indicator additional"> &mdash; {{ pair.0.interpretative_date }}</span>{% endif %}</h3>
+			
+			<p>{{ pair.0.text|truncatewords:40 }} <a href="{{ pair.0.get_absolute_url }}" class="see-all">read more</a></p>
+		</li>
+	{% endfor %}
+</ul>	
+
+<hr>
+
+<p>Celestial body: {{ random_body }}</p>
+<ul class="listing">
+	{% for item in random_body.museumobject_set.all %}
+		<li class="item">
+			{% if item.image %}
+				<img src="{{ item.image_inline }}" width="75" alt="">
+			{% endif %}
+			<h3><a href="{{ item.get_absolute_url }}">{{ item.name }}</a>, {% if item.interpretative_date %}<span class="date-indicator">{{ item.interpretative_date }}</span>{% endif %}</h3>
+			
+			<p>{{ item.text }}</p>
+		</li>
+	{% endfor %}
+</ul>
+
 {% endblock %}

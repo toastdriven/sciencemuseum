@@ -10,6 +10,15 @@ def index(self):
         'num_people': m.Person.objects.count(),
         'num_celestial_bodies': m.CelestialBody.objects.count(),
         'form': ModelSearchForm(),
+        'random_item': m.MuseumObject.objects.filter(
+            image__isnull = False
+        ).order_by('?')[0],
+        'random_person': m.Person.objects.exclude(
+            name__in = ('Unknown maker', 'Science Museum')
+        ).annotate(
+            num = Count('linkedperson__museum_object', distinct=True
+        )).filter(num__gt = 1).order_by('?')[0],
+        'random_body': m.CelestialBody.objects.order_by('?')[0],
     })
 
 def all(self):
