@@ -30,14 +30,23 @@ urlpatterns = patterns('',
         'django.views.generic.list_detail.object_list', item_options
     ),
     (r'^item/(.*)/$', 'collection.views.item'),
+    (r'^item/$', 'django.views.generic.simple.redirect_to', {
+        'url': '/items/',
+    }),
     
     (r'^people/$', 'collection.views.all_people'),
     (r'^person/(\d+)/$', 'collection.views.person'),
+    (r'^person/$', 'django.views.generic.simple.redirect_to', {
+        'url': '/people/',
+    }),
     
     (r'^celestial-bodies/$', 'collection.views.all_celestial_bodies'),
     (r'^celestial-body/(\d+)/$', 'collection.views.celestial_body'),
+    (r'^celestial-body/$', 'django.views.generic.simple.redirect_to', {
+        'url': '/celestial-bodies/',
+    }),
     
-    (r'^admin/', include(admin.site.urls)),
+    # (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
     
     (r'^search/$', MySearchView()),
