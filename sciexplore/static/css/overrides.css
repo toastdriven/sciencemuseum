@@ -4,6 +4,12 @@
   margin: 0;
   padding: 0;
 }
+
+#content li {
+  padding-bottom: 10px;
+  width: 60%;
+  clear: both;
+}
 #content ul {
   margin-bottom: 1em;
 }
@@ -19,6 +25,20 @@
   margin: 0;
   padding-bottom: 1em;
 }
+
+
+div.layout-e {
+	background: white;
+}
+
+
+div.page {
+	padding: 20px 20px 0 20px;
+	overflow: hidden;
+	zoom: 1;
+}
+
+
 div.info {
   width: 750px;
   clear: both;
