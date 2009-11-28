@@ -37,7 +37,7 @@
 <div class="home-cols">
 	<div class="home-col-1 home-col item">
 		<h2><a href="{{ random_item.get_absolute_url }}">{{ random_item.name }}</a> {% if random_item.interpretative_date %}<span class="date-indicator additional">&mdash; {{ random_item.interpretative_date }}</span>{% endif %} <span class="type-indicator">item</span></h2>
-		<p>{{ random_item.text }}</p>
+		<p>{{ random_item.text|truncatewords:20 }}</p>
 		{% if random_item.image %}
 			<img src="{{ random_item.image_inline }}" width="200" alt="">
 		{% endif %}
