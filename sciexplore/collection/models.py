@@ -63,6 +63,9 @@ class Place(models.Model):
     xml_id = models.CharField(unique = True, max_length = 20)
     place_name = models.CharField(max_length = 255)
     
+    def short(self):
+        return ','.join(self.place_name.split(',')[:3])
+    
     def __unicode__(self):
         return self.place_name
 
@@ -133,7 +136,7 @@ class MuseumObject(models.Model):
         places = {}
         for link in self.linked_places.select_related('person'):
             places.setdefault(
-                link.place.place_name, []
+                link.place.short(), []
             ).append(link.relationship)
         return places.items()
     

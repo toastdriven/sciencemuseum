@@ -1,0 +1,16 @@
+<style>
+ul, li {
+  list-style-type: none;
+}
+li {
+  padding-bottom: 10px;
+  width: 60%;
+  font-family: helvetica;
+  clear: both;
+}
+</style>
+<ul>
+{% for person in people %}
+  <li><a href="{{ person.get_absolute_url }}">{{ person }}</a></li>
+{% endfor %}
+</ul>
