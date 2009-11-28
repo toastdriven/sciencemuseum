@@ -17,7 +17,7 @@ span.highlighted {
             <h3>Results</h3>
             
             {% for result in page.object_list %}
-                <p>
+                <p class="{{ result.model_name }}">
                     <strong>{{ result.verbose_name }}:</strong> <a href="{{ result.object.get_absolute_url }}">{{ result.object }}</a> - {% highlight result.text with request.GET.q %}
                     
                 </p>
