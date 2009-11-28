@@ -65,7 +65,7 @@ jQuery(window).load(function() {
 				var y = ev.pageY - pos.top;
 				container.css(
 					'background-position', 
-					-((r * x) / 2) + 'px ' + -((r * y) / 2) + 'px'
+					-(r * x) + 'px ' + -(r * y) + 'px'
 				);
 			});
 			
