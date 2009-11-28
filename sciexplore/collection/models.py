@@ -132,6 +132,34 @@ class MuseumObject(models.Model):
             ).append(link.relationship)
         return places.items()
     
+    def related_objects(self):
+        # Related objects share a person, place or celestial 
+        # body. We order based on a simple scoring mechanism.
+        same_person = MuseumObject.objects.filter(
+            linked_people__person__linkedperson__museum_object = self
+        ).exclude(pk = self.pk).distinct()
+        
+        same_place = MuseumObject.objects.filter(
+            linked_places__place__linkedplace__museum_object = self
+        ).exclude(pk = self.pk).distinct()
+        
+        same_celestial_body = MuseumObject.objects.filter(
+            celestial_bodies__in = self.celestial_bodies.all()
+        ).exclude(pk = self.pk).distinct()
+        
+        results = {}
+        
+        for obj in same_person:
+            results[obj] = results.get(obj, 0) + 5
+        for obj in same_place:
+            results[obj] = results.get(obj, 0) + 2
+        for obj in same_celestial_body:
+            results[obj] = results.get(obj, 0) + 1
+        
+        results = results.items()
+        results.sort(key = lambda p: p[1], reverse=True)
+        return results
+    
     def guess_year(self):
         "Assumes first 4 digits are the year"
         s = self.interpretative_date or ''
