@@ -49,7 +49,7 @@
 
 		<h2><a href="{{ person.get_absolute_url }}">{{ random_person }}</a> <span class="type-indicator">person</span></h2>
 		<ul>
-			{% for pair in random_person.items|slice:":3" %}
+			{% for pair in random_person_items|slice:":1" %}
 				<li>
 
 					<h3><a href="{{ pair.0.get_absolute_url }}">{{ pair.0.name }}</a>, <span class="additional">({{ pair.1|join:", " }})</span> {% if pair.0.interpretative_date %}<span class="date-indicator additional"> &mdash; {{ pair.0.interpretative_date }}</span>{% endif %}</h3>
@@ -61,14 +61,15 @@
 					{% endif %}
 				</li>
 			{% endfor %}
-		</ul>	
+		</ul>
+		{% if random_person_more_num %}<p class="see-all"><a href="{{ random_person.get_absolute_url }}">And {{ random_person_more_num }} more</a></p>{% endif %}
 		<p class="see-all"><a href="/people/">See all people</a></p>
 	</div>
 
 	<div class="home-col-3 home-col celestial-body">
-		<h2><a href="{{ body.get_absolute_url }}">{{ random_body }}</a> <span class="type-indicator">celestial body</span></h2
+		<h2><a href="{{ random_body.get_absolute_url }}">{{ random_body }}</a> <span class="type-indicator">celestial body</span></h2
 		<ul>
-			{% for item in random_body.museumobject_set.all %}
+			{% for item in random_body_items|slice:":1" %}
 				<li>
 					<h3><a href="{{ item.get_absolute_url }}">{{ item.name }}</a>, {% if item.interpretative_date %}<span class="date-indicator">{{ item.interpretative_date }}</span>{% endif %}</h3>
 			
@@ -79,6 +80,7 @@
 				</li>
 			{% endfor %}
 		</ul>
+		{% if random_body_more_num %}<p class="see-all"><a href="{{ random_body.get_absolute_url }}">And {{ random_body_more_num }} more</a></p>{% endif %}
 		<p class="see-all"><a href="/items/">See all celestial bodies</a></p>
 	</div>
 </div>
