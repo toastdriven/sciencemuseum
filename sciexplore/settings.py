@@ -97,3 +97,9 @@ TEMPLATE_CONTEXT_PROCESSORS = (
 )
 
 MAPS_API_KEY = 'ABQIAAAAyYu8a7AdbfUctK3zwwu_2hQCULP4XOMyhPd8d_NrQQEO8sT8XBQQ8wbEZJ22JhSZQuxIzOKGAVxvKw'
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
+
