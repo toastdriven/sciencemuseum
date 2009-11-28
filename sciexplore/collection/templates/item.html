@@ -46,19 +46,14 @@ jQuery(function($) {
 			marginLeft: '-110px'
 		});
 		$('.img-wrapper').append(loading);
-		
+		icon.unbind('click');
 		// Load the big image
 		var big = new Image();
 		big.src = big_src;
 		$(big).load(function() {
-			console.log('big image loaded...');
 			var big_width = big.width;
 			var big_height = big.height;
 			var r = big_height / img.width();
-			console.log(
-				'r = ' + r + ' big_height = ' + big_height 
-				+ ' big_width = ' + big_width
-			);
 			loading.remove();
 			var container = $('<div></div>');
 			container.width(img.width());
@@ -68,7 +63,6 @@ jQuery(function($) {
 				'background-repeat': 'no-repeat',
 				'background-position': '0 0'
 			});
-			console.log(container);
 			img.hide();
 			container.appendTo($('.img-wrapper'));
 			var pos = container.offset();
@@ -79,8 +73,32 @@ jQuery(function($) {
 					'background-position', -(r * x) + 'px ' + -(r * y) + 'px'
 				);
 			});
-		});	}
-
+			
+			// Now get the minus button to work
+			icon.attr(
+				'src', '/static/img/icons/magnifier_zoom_out.png'
+			).attr('title', 'Zoom out');
+			var zoomed = true;
+			icon.click(function() {
+				if (zoomed) {
+					icon.attr(
+						'src', '/static/img/icons/magnifier_zoom_in.png'
+					).attr('title', 'Zoom in');
+					container.hide();
+					img.css('opacity', 1).show();
+					zoomed = false;
+				} else {
+					icon.attr(
+						'src', '/static/img/icons/magnifier_zoom_out.png'
+					).attr('title', 'Zoom out');
+					container.show();
+					img.hide();
+					zoomed = true;
+				}
+			});
+			
+		});
+	}
 });
 
 jQuery(function($) {
