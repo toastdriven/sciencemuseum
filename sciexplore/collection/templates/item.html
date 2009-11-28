@@ -152,6 +152,7 @@ jQuery(function($) {
 				<li><a href="{{ p.0.get_absolute_url }}">{{ p.0 }}</a> <span class="additional">&mdash; ({{ p.1|join:", " }})</span></li>
 			{% endfor %}
 		</ul>
+		<p class="see-all extra"><a href="/people/">See all people</a></p>
 	{% endif %}
 
 	{% if item.celestial_bodies.all %}
@@ -161,6 +162,7 @@ jQuery(function($) {
 				<li><a href="{{ body.get_absolute_url }}">{{ body }}</a></li>
 			{% endfor %}
 		</ul>
+		<p class="see-all extra"><a href="/celestial-bodies/">See all celestial bodies</a></p>
 	{% endif %}
 	
 	{% with item.related_objects as related %}{% if related %}
@@ -170,6 +172,7 @@ jQuery(function($) {
 				<li><a href="{{ obj.0.get_absolute_url }}">{{ obj.0.name }}</a>{% if obj.0.interpretative_date %}, <span class="additional">&mdash; {{ obj.0.interpretative_date }}</span>{% endif %}</a></li>
 			{% endfor %}
 		</ul>
+		<p class="see-all extra"><a href="/items/">See all items</a></p>
 	{% endif %}{% endwith %}
 </div>
 

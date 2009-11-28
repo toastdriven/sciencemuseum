@@ -89,18 +89,45 @@ p.download {
 	background-image: url(/static/img/icons/map.png);
 	background-position: left center;
 }
+
 p.see-all {
 	text-align: right;
 }
-p.see-all a,
-a.see-all {
+#content p.see-all a:link,
+#content p.see-all a:visited,
+#content p.see-all a:hover,
+#content p.see-all a:focus,
+#content p.see-all a:active,
+#content a.see-all:link,
+#content a.see-all:visited,
+#content a.see-all:hover,
+#content a.see-all:active,
+#content a.see-all:focus {
+	/* listing all psuedo classes to avoid dynamic inheritance clash in IE6 */
 	padding: 3px 17px 2px 0;
 	background-image: url(/static/img/icons/resultset_next.png);
 	background-repeat: no-repeat;
 	background-position: right 0.35em;
 	white-space: nowrap;
+	color: #226DCD;
+	margin: 0;
+}
+#content p.extra.see-all a,
+#content p.extra a {
+	background-position: right 3px;
 }
 
+#content p.see-all a:hover,
+#content p.see-all a:focus,
+#content p.see-all a:active,
+#content a.see-all:hover,
+#content a.see-all:active,
+#content a.see-all:focus {
+	color: #1A539C;
+}
+#content .extra {
+	font-size: 0.714em;
+}
 #content .additional {
 	font-style: italic;
 	font-weight: normal;
