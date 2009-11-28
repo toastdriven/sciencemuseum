@@ -103,37 +103,35 @@ jQuery(window).load(function() {
 });
 
 jQuery(function($) {
-  return;
-  var div = $('.map-goes-here');
-  if (div.length) {
-    div.width(704).height(300).css('clear', 'both');
-    var map = new GMap2(div[0]);
-    map.setCenter(new GLatLng(43.8, -37.3), 1);
-    var geocoder = new GClientGeocoder();
-    var bounds = new GLatLngBounds();
-    /* Now pull in the places */
-    $('ul.places span').each(function() {
-      var span = $(this);
-      var location = span.text().replace(', World', '');
-      geocoder.getLatLng(location, function(point) {
-        var marker = new GMarker(point);
-        map.addOverlay(marker);
-        GEvent.addListener(marker, "click", function() {
-          marker.openInfoWindowHtml(
-            span.parent().html().replace(' - ', '<br>')
-          );
-        });
-        bounds.extend(point);
-        map.setCenter(
-          bounds.getCenter(), Math.min(
-            6, (map.getBoundsZoomLevel(bounds) - 1)
-          )
-        );
-      });
-    });
-
-    div.wrap('<div class="map-container"></div>');
-  }
+	var div = $('.map-goes-here');
+	if (div.length) {
+		div.width(704).height(300).css('clear', 'both');
+		var map = new GMap2(div[0]);
+		map.setCenter(new GLatLng(43.8, -37.3), 1);
+		var geocoder = new GClientGeocoder();
+		var bounds = new GLatLngBounds();
+		/* Now pull in the places */
+		$('ul.places span').each(function() {
+			var span = $(this);
+			var location = span.text().replace(', World', '');
+			geocoder.getLatLng(location, function(point) {
+				var marker = new GMarker(point);
+				map.addOverlay(marker);
+				GEvent.addListener(marker, "click", function() {
+					marker.openInfoWindowHtml(
+						span.parent().html().replace(' - ', '<br>')
+					);
+				});
+				bounds.extend(point);
+				map.setCenter(
+					bounds.getCenter(), Math.min(
+						6, (map.getBoundsZoomLevel(bounds) - 1)
+					)
+				);
+			});
+		});
+		div.wrap('<div class="map-container"></div>');
+	}
 });
 </script>
 {% endblock %}
