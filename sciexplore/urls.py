@@ -18,8 +18,13 @@ from collection.search_views import MySearchView
 urlpatterns = patterns('',
     (r'^item/$', 'collection.views.all'),
     (r'^item/(.*)/$', 'collection.views.item'),
+    
+    (r'^people/$', 'collection.views.all_people'),
     (r'^person/(\d+)/$', 'collection.views.person'),
+    
+    (r'^celestial-bodies/$', 'collection.views.all_celestial_bodies'),
     (r'^celestial-body/(\d+)/$', 'collection.views.celestial_body'),
+    
     (r'^admin/', include(admin.site.urls)),
     (r'^databrowse/(.*)', databrowse.site.root),
     
