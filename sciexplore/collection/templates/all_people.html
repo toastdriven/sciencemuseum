@@ -11,6 +11,6 @@ li {
 </style>
 <ul>
 {% for person in people %}
-  <li><a href="{{ person.get_absolute_url }}">{{ person }}</a></li>
+  <li><a href="{{ person.get_absolute_url }}">{{ person }}</a> -- {{ person.num }} item{{ person.num|pluralize }}</li>
 {% endfor %}
 </ul>
