@@ -1,0 +1,69 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN"
+    "http://www.w3.org/TR/html4/strict.dtd">
+<html>
+<head>
+<style>
+a img {
+    border: none;
+}
+</style>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.3.2/jquery.js"></script>
+
+<script>
+
+function initZoom(a) {
+    var img = a.find('img');
+    var big_src = a.attr('href');
+    img.css('opacity', 0.4);
+    a.css({
+        display: 'block',
+        position: 'relative'
+    }).width(img.width()).height(img.height());
+    var loading = $('<img src="loading.gif">');
+    loading.appendTo(a).css({
+        position: 'absolute',
+        top: img.height() / 2,
+        left: 15
+    });
+    var big = new Image();
+    big.src = big_src;
+    $(big).load(function() {
+        var big_width = big.width;
+        var big_height = big.height;
+        var r = big_height / img.width();
+        loading.remove();
+        var container = $('<div></div>');
+        container.width(img.width());
+        container.height(img.height());
+        container.css({
+            'background-image': 'url(' + big_src + ')',
+            'background-repeat': 'no-repeat',
+            'background-position': '0 0'
+        });
+        img.remove();
+        container.appendTo(a);
+        var pos = container.offset();
+        container.mousemove(function(ev) {
+            var x = ev.pageX - pos.left;
+            var y = ev.pageY - pos.top;
+            container.css(
+                'background-position', -(r * x) + 'px ' + -(r * y) + 'px'
+            );
+        });
+    });
+}
+
+jQuery(function($) {
+    $('a.zoomer').click(function() {
+        initZoom($(this));
+        return false;
+    });
+});
+</script>
+</head>
+<body>
+
+<div><a class="zoomer" href="http://www.sciencemuseum.org.uk/hommedia.ashx?id=11730&amp;size=Large"><img src="http://www.sciencemuseum.org.uk/hommedia.ashx?id=11730&amp;size=Small"></a></div>
+
+</body>
+</html>
