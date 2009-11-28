@@ -116,10 +116,16 @@ def do_import(et):
                     'place_name': el.find('PlaceMade/PlaceName').text.strip(),
                 }
             )
-            linked_place = m.LinkedPlace.objects.create(
+            # Avoid duplicates:
+            if m.LinkedPlace.objects.filter(
                 place = place_made,
                 museum_object = obj,
                 relationship = el.find('PlaceMade/Relationship').text
-            )
-            obj.place_made = linked_place
-            obj.save()
+            ).count() == 0:
+                linked_place = m.LinkedPlace.objects.create(
+                    place = place_made,
+                    museum_object = obj,
+                    relationship = el.find('PlaceMade/Relationship').text
+                )
+                obj.place_made = linked_place
+                obj.save()

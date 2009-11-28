@@ -128,7 +128,9 @@ p.see-all {
 	background-position: right 3px;
 }
 #content .search p.see-all a,
-#content .search a.see-all {
+#content .search a.see-all,
+#content .home-cols p.see-all a,
+#content .home-cols a.see-all {
 	background-position: right 0.35em;
 	white-space: normal;
 }
@@ -143,7 +145,8 @@ p.see-all {
 #content .extra {
 	font-size: 0.714em;
 }
-#content .page .additional {
+#content .page .additional,
+#content .home-cols .additional {
 	font-style: italic;
 	font-weight: normal;
 	color: #8B8B8B;
@@ -175,6 +178,10 @@ div#header ul#top-nav {
 }
 div.page {
 	padding: 20px 20px 0 20px;
+	overflow: hidden;
+	zoom: 1;
+}
+.search {
 	overflow: hidden;
 	zoom: 1;
 }
@@ -250,6 +257,7 @@ div#content .meta p {
 	border: 1px solid #D2D2D2;
 	padding: 10px;
 	margin-bottom: 20px;
+	clear: both;
 }
 .map-goes-here {
 	width: 704px;
@@ -318,10 +326,58 @@ div#content .meta p {
 	float: left;
 }
 
+
+/* - OVERRIDES FOR HOMEPAGE --------------------- */
+
 .main-image {
 	float: left;
-}
-.intro {
 	width: 200px;
+	margin-right: 20px;
+}
+.introduction {
+	width: 477px;
 	float: right;
+	margin-bottom: 20px;
+}
+.leader {
+	font-weight: bold;
+	font-size: 1.143em;
+}
+.home-cols {
+	background-color: #D2D2D2;
+	overflow: hidden;
+	zoom: 1;
+	padding-top: 3px;
+	margin-bottom: -20px;
+	margin-top: 20px;
+	font-size: 1.4em;
+	line-height: 1.25;
+}
+#content .home-cols h2 {
+	line-height: 1.25em;
+}
+#content .home-cols h3 {
+	font-size: 1em;
+}
+.home-cols .home-col {
+	background-color: white;
+	width: 206px;
+	padding: 20px;
+	margin-bottom: -900em;
+	padding-bottom: 901em;
+	margin-right: 3px;
+	float: left;
+}
+.home-cols .home-col-3 {
+	float: right;
+	margin-right: 0;
+}
+.home-cols img {
+	border: 1px solid #D2D2D2;
+	padding: 2px;
+	display: block;
+	margin: 0 auto;
+}
+.home-cols .item img {
+	margin-bottom: 20px;
 }
