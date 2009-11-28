@@ -40,38 +40,40 @@ jQuery(function($) {
 {% block pagetitle %}{{ item.name }}{% endblock %}
 
 {% block content %}
-<h2>{{ item.headline|default:"" }}</h2>
 
-<div class="info">
-  <div class="tertiary">
-    {% if item.image %}
-    <div class="polaroid">
-      <img src="{{ item.image_small }}">
-      <p><strong>Date:</strong> {{ item.interpretative_date }}</p>
-    </div>
-    {% else %}
-    <strong>Date:</strong> {{ item.interpretative_date }}<br>
-    {% endif %}
-    {% if item.materials.all %}
-    <strong>Made of:</strong> 
-      {% for material in item.materials.all %}
-      {{ material.component }}: {{ material.description }}
-      {% if not forloop.last %}, {% endif %}
-      {% endfor %}
-      <br>
-    {% endif %}
-    {% if item.measurements.all %}
-    <strong>Measurements:</strong> 
-      {% for measurement in item.measurements.all %}
-      {{ measurement.description }}
-      {% if not forloop.last %}, {% endif %}
-      {% endfor %}
-      <br>
-    {% endif %}
-    <strong>Credit:</strong> {{ item.credit }}<br>
-  </div>
-  <div class="text">{{ item.text }}</div>
-</div>
+	<div class="tertiary">
+		
+		{% if item.image %}
+			<div class="polaroid">
+	 			<img src="{{ item.image_small }}">
+	 			<p class="date"><strong>Date:</strong> {{ item.interpretative_date }}</p>
+			</div>
+		{% else %}
+			<p class="date"><strong>Date:</strong> {{ item.interpretative_date }}</p>
+		{% endif %}
+		
+		{% if item.materials.all %}
+			<p class="material"><strong>Made of:</strong> 
+			{% for material in item.materials.all %}
+				the {{ material.component }} is made of {{ material.description }}{% if not forloop.last %}, {% endif %} 
+			{% endfor %}</p>
+		{% endif %}
+		
+		{% if item.measurements.all %}
+			<p class="measurement"><strong>Measurements:</strong> 
+	 		{% for measurement in item.measurements.all %}
+	 			{{ measurement.description }}{% if not forloop.last %}, {% endif %}
+	 		{% endfor %}</p>
+		{% endif %}
+		
+		{% if item.credit %}
+			<p class="credit"><strong>Credit:</strong> {{ item.credit }}</p>
+		{% endif %}
+		
+	</div>
+	
+	<h2>{{ item.headline|default:"" }}</h2>
+	<div class="text">{{ item.text }}</div>
 
 <div class="secondary">
 {% if item.people %}

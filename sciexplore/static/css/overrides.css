@@ -1,3 +1,5 @@
+/* - GENERAL --------------------- */
+
 #content ul, 
 #content li {
   list-style-type: none;
@@ -26,6 +28,29 @@
   padding-bottom: 1em;
 }
 
+div#content p {
+	margin:0 0 1em 0;
+}
+
+
+/* - HELPER --------------------- */
+
+p.measurement,
+p.material,
+p.credit {
+	padding: 3px 0 2px 24px;
+	background-image: url(/static/img/icons/chart_bar.png);
+	background-repeat: no-repeat;
+	background-position: 0 0.1em;
+}
+p.material {
+	background-image: url(/static/img/icons/brick.png);
+}
+p.credit {
+	background-image: url(/static/img/icons/book_open.png);
+}
+
+/* - STRUCTURE --------------------- */
 
 div.layout-e {
 	background: white;
@@ -38,12 +63,6 @@ div.page {
 	zoom: 1;
 }
 
-
-div.info {
-  width: 750px;
-  clear: both;
-  float: left;
-}
 div.secondary {
   width: 300px;
   float: left;
@@ -53,6 +72,10 @@ div.tertiary {
   width: 388px;
   float: left;
 }
+
+/* - COMPONENTS --------------------- */
+
+
 div.polaroid {
   border: 2px solid #666;
   background-color: #ccc;
@@ -67,6 +90,7 @@ div.polaroid p {
   margin: 0;
   padding: 2px;
 }
+
 div.text {
   padding-left: 1em;
   float: left;
