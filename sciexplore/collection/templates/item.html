@@ -6,6 +6,9 @@
 <script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key={{ maps_api_key }}" type="text/javascript"></script>
 <script type="text/javascript">
 jQuery(function($) {
+	
+	
+	
   var div = $('.map-goes-here');
   if (div.length) {
     div.width(704).height(300).css('clear', 'both');
@@ -32,6 +35,8 @@ jQuery(function($) {
         );
       });
     });
+
+	div.wrap('<div class="map-container"></div>');
   }
 });
 </script>
@@ -40,6 +45,32 @@ jQuery(function($) {
 {% block pagetitle %}{{ item.name }}{% endblock %}
 
 {% block content %}
+
+<div class="primary">
+	
+	<h2>{{ item.headline|default:"" }}</h2>
+	<p>{{ item.text }}</p>
+
+
+	{% if item.people %}
+		<h3>People and organisations</h3>
+		<ul class="people">
+			{% for p in item.people %}
+				<li><a href="{{ p.0.get_absolute_url }}">{{ p.0 }}</a> - {{ p.1|join:", " }}</li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+
+	{% if item.celestial_bodies.all %}
+		<h3>Celestial bodies</h3>
+		<ul class="bodies">
+			{% for body in item.celestial_bodies.all %}
+				<li><a href="{{ body.get_absolute_url }}">{{ body }}</a></li>
+			{% endfor %}
+		</ul>
+	{% endif %}
+	
+</div>
 
 	<div class="tertiary">
 		
@@ -52,57 +83,40 @@ jQuery(function($) {
 			<p class="date"><strong>Date:</strong> {{ item.interpretative_date }}</p>
 		{% endif %}
 		
-		{% if item.materials.all %}
-			<p class="material"><strong>Made of:</strong> 
-			{% for material in item.materials.all %}
-				the {{ material.component }} is made of {{ material.description }}{% if not forloop.last %}, {% endif %} 
-			{% endfor %}</p>
-		{% endif %}
+		{% if item.materials.all or item.measurements.all or item.credit %}
+			<div class="meta">
+				{% if item.materials.all %}
+					<p class="material"><strong>Made of:</strong> 
+					{% for material in item.materials.all %}
+						the {{ material.component }} is made of {{ material.description }}{% if not forloop.last %}, {% endif %} 
+					{% endfor %}</p>
+				{% endif %}
 		
-		{% if item.measurements.all %}
-			<p class="measurement"><strong>Measurements:</strong> 
-	 		{% for measurement in item.measurements.all %}
-	 			{{ measurement.description }}{% if not forloop.last %}, {% endif %}
-	 		{% endfor %}</p>
-		{% endif %}
+				{% if item.measurements.all %}
+					<p class="measurement"><strong>Measurements:</strong> 
+			 		{% for measurement in item.measurements.all %}
+			 			{{ measurement.description }}{% if not forloop.last %}, {% endif %}
+			 		{% endfor %}</p>
+				{% endif %}
 		
-		{% if item.credit %}
-			<p class="credit"><strong>Credit:</strong> {{ item.credit }}</p>
+				{% if item.credit %}
+					<p class="credit"><strong>Credit:</strong> {{ item.credit }}</p>
+				{% endif %}
+			</div>	
 		{% endif %}
 		
 	</div>
-	
-	<h2>{{ item.headline|default:"" }}</h2>
-	<div class="text">{{ item.text }}</div>
-
-<div class="secondary">
-{% if item.people %}
-  <h3>People and organisations</h3>
-  <ul>
-  {% for p in item.people %}
-  <li><a href="{{ p.0.get_absolute_url }}">{{ p.0 }}</a> - {{ p.1|join:", " }}</li>
-  {% endfor %}
-  </ul>
-{% endif %}
-
-{% if item.celestial_bodies.all %}
-  <h3>Celestial bodies</h3>
-  <ul>
-  {% for body in item.celestial_bodies.all %}
-  <li><a href="{{ body.get_absolute_url }}">{{ body }}</a></li>
-  {% endfor %}
-  </ul>
-{% endif %}
-</div>
 
 {% if item.places %}
-<h3>Places</h3>
-<ul class="places">
-  {% for p in item.places %}
-    <li><span>{{ p.0 }}</span> - <strong>{{ p.1|join:", " }}</strong></li>
-  {% endfor %}
-</ul>
-<div class="map-goes-here"><img src="http://maps.google.com/maps/api/staticmap?size=600x300&amp;maptype=roadmap&amp;markers=color:red|{% for p in item.places %}{{ p.0|urlencode }}{% if not forloop.last %}|{% endif %}{% endfor %}&amp;sensor=false&amp;key={{ maps_api_key }}" alt="Map showing {% for p in item.places %}{{ p.0 }}{% if not forloop.last %} and {% endif %}{% endfor %}"></div>
+
+	<h3>Places</h3>
+	<ul class="places">
+		{% for p in item.places %}
+			<li><span>{{ p.0 }}</span> - <strong>{{ p.1|join:", " }}</strong></li>
+		{% endfor %}
+	</ul>
+	
+	<div class="map-goes-here"><img src="http://maps.google.com/maps/api/staticmap?size=704x300&amp;maptype=roadmap&amp;markers=color:red|{% for p in item.places %}{{ p.0|urlencode }}{% if not forloop.last %}|{% endif %}{% endfor %}&amp;sensor=false&amp;key={{ maps_api_key }}" alt="Map showing {% for p in item.places %}{{ p.0 }}{% if not forloop.last %} and {% endif %}{% endfor %}"></div>
 
 {% endif %}
 

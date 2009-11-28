@@ -1,31 +1,36 @@
 /* - GENERAL --------------------- */
 
+#content .page {
+	font-size: 1.4em;
+	line-height: 1.2;
+}
+
 #content ul, 
 #content li {
-  list-style-type: none;
-  margin: 0;
-  padding: 0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 
 #content li {
-  padding-bottom: 10px;
-  width: 60%;
-  clear: both;
+	padding-bottom: 10px;
+	clear: both;
 }
 #content ul {
-  margin-bottom: 1em;
+	margin-bottom: 1em;
 }
-#content h1 {
-  font-size: 3em;
-  margin: 0;
+
+div#content h2 {
+	font-size: 1.5em;
+	color: #666;
+	margin: 0 0 0.8em 0;
+	padding: 0;
+	clear: both;
 }
-#content h2 {
-  font-size: 1.5em;
-  color: #666;
-}
-#content h3 {
-  margin: 0;
-  padding-bottom: 1em;
+div#content h3 {
+	margin: 0.8em 0 0.6em 0;
+	padding: 0;
+	clear: both;
 }
 
 div#content p {
@@ -37,7 +42,9 @@ div#content p {
 
 p.measurement,
 p.material,
-p.credit {
+p.credit,
+#content ul.people li,
+#content ul.bodies li {
 	padding: 3px 0 2px 24px;
 	background-image: url(/static/img/icons/chart_bar.png);
 	background-repeat: no-repeat;
@@ -49,7 +56,12 @@ p.material {
 p.credit {
 	background-image: url(/static/img/icons/book_open.png);
 }
-
+#content ul.people li {
+	background-image: url(/static/img/icons/user_suit.png);
+}
+#content ul.bodies li {
+	background-image: url(/static/img/icons/world.png);
+}
 /* - STRUCTURE --------------------- */
 
 div.layout-e {
@@ -63,36 +75,67 @@ div.page {
 	zoom: 1;
 }
 
+div.primary {
+	width: 298px;
+	float: right;
+}
+
 div.secondary {
-  width: 300px;
-  float: left;
+	width: 300px;
+	float: left;
 }
 
 div.tertiary {
-  width: 388px;
-  float: left;
+	width: 386px;
+	float: left;
 }
 
 /* - COMPONENTS --------------------- */
 
 
 div.polaroid {
-  border: 2px solid #666;
-  background-color: #ccc;
-  margin: 0;
-  padding: 0;
+	 margin: 0;
+	 padding: 0;
 }
 div.polaroid img {
-  display: block;
-  border: none;
+	display: block;
+	border: 1px solid #D2D2D2;
+	padding: 2px;
 }
 div.polaroid p {
-  margin: 0;
-  padding: 2px;
+	 margin: 0;
+	 padding: 2px;
+}
+.date {
+	font-size: 1.143em;
+}
+.meta {
+	font-size: 0.714em;
+	background-color: #E4E4E4;
+	border: 1px solid #D2D2D2;
+	padding: 10px;
+	margin-bottom: 20px;
+}
+div#content .meta p {
+	margin: 0 0 0.3em 0;
+}
+.map-goes-here {
+	width: 704px;
+	height: 306px;
 }
 
-div.text {
-  padding-left: 1em;
-  float: left;
-  width: 300px;
+.hasJS .map-goes-here {
+	height: 300px;
+}
+.hasJS .map-container {
+	border: 1px solid #D2D2D2;
+	padding: 2px;
+	width: 704px;
+	height: 300px;
+}
+.map-goes-here img {
+	display: block;
+	margin: 0 auto;
+	border: 1px solid #D2D2D2;
+	padding: 2px;
 }
