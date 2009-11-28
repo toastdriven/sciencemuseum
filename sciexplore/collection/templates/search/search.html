@@ -1,48 +1,63 @@
-<style>
-span.highlighted {
-  background-color: yellow;
-}
-</style>
-{% load highlight %}
-    <h2>Search</h2>
+{% extends "base.html" %}
+{% block title %}Search{% endblock %}
+{% block pagetitle %}Search{% endblock %}
 
-    <form method="get" action=".">
-      <p>
+{% block content %}
+{% load highlight %}
+    <form method="get" action="." class="search">
+      <p class="search-form">
         {{ form.q }} in 
         {{ form.what }}
         <input type="submit" value="Search">
       </p>
       
-        {% if page.object_list %}
-            <h3>Results</h3>
-            
+		<div class="primary">{% if page.object_list %}
+            <h2>Results</h2>
+            <ul class="listing">
             {% for result in page.object_list %}
 
                 {% ifequal result.model_name "museumobject" %}
-                <p class="item">
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a> - {% highlight result.text with request.GET.q %}
-                </p>
+                <li class="item">
+					{% if result.object.image %}
+						<img src="{{ result.object.image_inline }}" width="75" alt="">
+					{% endif %}
+                    <h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a> <span class="type-indicator">item</span></h3>
+					<p>{% highlight result.text with request.GET.q %} <a href="{{ item.get_absolute_url }}" class="see-all">read more</a></p>
+                </li>
                 {% endifequal %}
+
                 {% ifequal result.model_name "celestialbody" %}
-                <p class="celestial-body">
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.common_name }}</a> - {% highlight result.text with request.GET.q %}
-                </p>
+                <li class="celestial-body">
+                    <h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.common_name }}</a> <span class="type-indicator">celestial body</span></h3>
+ 					<p>{% highlight result.text with request.GET.q %}</p>
+                </li>
                 {% endifequal %}
+
                 {% ifequal result.model_name "person" %}
-                <p class="person">
-                    <a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a> - {% highlight result.text with request.GET.q %}
-                </p>
+                <li class="person">
+                   	<h3><a href="{{ result.object.get_absolute_url }}">{{ result.object.name }}</a> <span class="type-indicator">person</span></h3>
+ 					<p>{% highlight result.text with request.GET.q %}</p>
+                </li>
                 {% endifequal %}
 
             {% endfor %}
+			</ul>
         {% else %}
           {% if request.GET.q %}
-            <p>Sorry, we didn't find anything.
+            <p class="notification error">Sorry, we didn't find anything.
               {% if suggestion %}
-                <a href="/search/?q={{ suggestion|urlencode }}">Try {{ suggestion }} instead</a>?
+                <a href="/search/?q={{ suggestion|urlencode }}">Try <strong>{{ suggestion }}</strong> instead</a>?
               {% endif %}
             </p>
           {% endif %}
         
         {% endif %}
+		</div>
+		<div class="secondary">
+			<h2>See all</h2>
+			<p class="see-all"><a href="/items/">Items</a></p>
+			<p class="see-all"><a href="/people/">People</a></p>
+			<p class="see-all"><a href="/celestial-bodies/">Celestial bodies</a></p>
+		</div>
     </form>
+{% endblock %}
