@@ -91,7 +91,7 @@
 	<h3>Places</h3>
 	<ul class="places">
 		{% for p in item.places %}
-			<li>{{ p.0 }} <span class="additional">&mdash; {{ p.1|join:", " }}</span></li>
+			<li><span class="place-name">{{ p.0 }}</span> <span class="additional">&mdash; {{ p.1|join:", " }}</span></li>
 		{% endfor %}
 	</ul>
 	

@@ -104,7 +104,7 @@ jQuery(function($) {
 		var geocoder = new GClientGeocoder();
 		var bounds = new GLatLngBounds();
 		/* Now pull in the places */
-		$('ul.places span').each(function() {
+		$('ul.places span.place-name').each(function() {
 			var span = $(this);
 			var location = span.text().replace(', World', '');
 			geocoder.getLatLng(location, function(point) {
