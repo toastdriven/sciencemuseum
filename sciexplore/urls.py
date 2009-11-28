@@ -15,8 +15,19 @@ for name in dir(models):
 
 from collection.search_views import MySearchView
 
+item_options = {
+    'queryset': models.MuseumObject.objects.all(),
+    'template_name': 'all.html',
+    'paginate_by': 20,
+}
+
 urlpatterns = patterns('',
-    (r'^items/$', 'collection.views.all'),
+    (r'^items/$',
+        'django.views.generic.list_detail.object_list', item_options
+    ),
+    (r'^items/page(?P<page>[0-9]+)/$', 
+        'django.views.generic.list_detail.object_list', item_options
+    ),
     (r'^item/(.*)/$', 'collection.views.item'),
     
     (r'^people/$', 'collection.views.all_people'),
