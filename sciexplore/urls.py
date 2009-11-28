@@ -22,6 +22,7 @@ item_options = {
 }
 
 urlpatterns = patterns('',
+    (r'^$', 'collection.views.index'),
     (r'^items/$',
         'django.views.generic.list_detail.object_list', item_options
     ),

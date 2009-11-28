@@ -2,6 +2,15 @@ from django.shortcuts import render_to_response as render, get_object_or_404
 from django.conf import settings
 from django.db.models import Count
 import models as m
+from search_views import ModelSearchForm
+
+def index(self):
+    return render('index.html', {
+        'num_items': m.MuseumObject.objects.count(),
+        'num_people': m.Person.objects.count(),
+        'num_celestial_bodies': m.CelestialBody.objects.count(),
+        'form': ModelSearchForm(),
+    })
 
 def all(self):
     return render('all.html', {
