@@ -1,0 +1,16 @@
+<style>
+ul, li {
+  list-style-type: none;
+}
+li {
+  padding-bottom: 10px;
+  width: 60%;
+  font-family: helvetica;
+  clear: both;
+}
+</style>
+<ul>
+{% for body in bodies %}
+  <li><a href="{{ body.get_absolute_url }}">{{ body }}</a></li>
+{% endfor %}
+</ul>

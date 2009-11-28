@@ -22,3 +22,13 @@ def celestial_body(self, pk):
     return render('celestial_body.html', {
         'body': get_object_or_404(m.CelestialBody, pk = pk),
     })
+
+def all_people(self):
+    return render('all_people.html', {
+        'people': m.Person.objects.all(),
+    })
+
+def all_celestial_bodies(self):
+    return render('all_celestial_bodies.html', {
+        'bodies': m.CelestialBody.objects.all(),
+    })
