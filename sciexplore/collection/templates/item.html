@@ -3,7 +3,7 @@
 {% block title %}{{ item.name }}{% endblock %}
 
 {% block extra_head %}
-<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key=ABQIAAAAyYu8a7AdbfUctK3zwwu_2hQCULP4XOMyhPd8d_NrQQEO8sT8XBQQ8wbEZJ22JhSZQuxIzOKGAVxvKw" type="text/javascript"></script>
+<script src="http://maps.google.com/maps?file=api&amp;v=2&amp;sensor=false&amp;key={{ maps_api_key }}" type="text/javascript"></script>
 <script type="text/javascript">
 jQuery(function($) {
   var div = $('.map-goes-here');
@@ -102,7 +102,8 @@ jQuery(function($) {
     <li><span>{{ p.0 }}</span> - <strong>{{ p.1|join:", " }}</strong></li>
   {% endfor %}
 </ul>
-<div class="map-goes-here"></div>
+<div class="map-goes-here"><img src="http://maps.google.com/maps/api/staticmap?size=600x300&amp;maptype=roadmap&amp;markers=color:red|{% for p in item.places %}{{ p.0|urlencode }}{% if not forloop.last %}|{% endif %}{% endfor %}&amp;sensor=false&amp;key={{ maps_api_key }}" alt="Map showing {% for p in item.places %}{{ p.0 }}{% if not forloop.last %} and {% endif %}{% endfor %}"></div>
+
 {% endif %}
 
 {% endblock %}
