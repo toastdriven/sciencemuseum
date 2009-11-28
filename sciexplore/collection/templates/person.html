@@ -1,27 +1,33 @@
-<h1>{{ person.name }}</h1>
+{% extends "base.html" %}
 
-<style>
-ul, li {
-  list-style-type: none;
-}
-li {
-  padding-bottom: 10px;
-  width: 60%;
-  font-family: helvetica;
-  clear: both;
-}
-</style>
-<ul>
-{% for item in person.items %}
-  <li>{% if item.0.image %}<img align="left" src="{{ item.0.image_inline }}" width="75">{% endif %}<strong>{% if item.0.interpretative_date %}{{ item.0.interpretative_date }}, {% endif %}{{ item.1|join:", " }}</strong>: <a href="{{ item.0.get_absolute_url }}">{{ item.0.name }}</a><br> {{ item.0.text }}</li>
-{% endfor %}
-</ul>
+{% block title %}{{ person.name }}{% endblock %}
+{% block pagetitle %}{{ person.name }}{% endblock %}
+
+{% block content %}
 
 {% with person.related_people as related %}{% if related %}
-	<h3>Related people and organisations</h3>
-	<ul>
+	<h2>Related people and organisations</h2>
+	<ul class="people">
 		{% for obj in related|slice:"3" %}
 			<li><a href="{{ obj.get_absolute_url }}">{{ obj }}</a></li>
 		{% endfor %}
 	</ul>
 {% endif %}{% endwith %}
+
+{% if person.items %}
+<h2>Related items</h2>
+<ul class="listing">
+	{% for pair in person.items %}
+		<li class="item">
+			{% if pair.0.image %}
+				<img src="{{ pair.0.image_inline }}" width="75" alt="" />
+			{% endif %}
+			<h3><a href="{{ pair.0.get_absolute_url }}">{{ pair.0.name }}</a>, <span class="additional">({{ pair.1|join:", " }})</span> {% if pair.0.interpretative_date %}<span class="date-indicator">{{ pair.0.interpretative_date }}</span>{% endif %}</h3>
+			
+			<p>{{ pair.0.text|truncatewords:40 }} <a href="{{ pair.0.get_absolute_url }}" class="see-all">read more</a></p>
+		</li>
+	{% endfor %}
+</ul>	
+{% endif %}
+
+{% endblock %}

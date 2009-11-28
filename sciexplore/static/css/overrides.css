@@ -60,7 +60,8 @@ p.credit,
 p.download,
 #content ul.people li,
 #content ul.bodies li,
-#content ul.items li {
+#content ul.items li,
+#content ul.places li {
 	padding: 3px 0 2px 24px;
 	background-image: url(/static/img/icons/chart_bar.png);
 	background-repeat: no-repeat;
@@ -84,7 +85,10 @@ p.download {
 #content ul.items li {
 	background-image: url(/static/img/icons/box.png);
 }
-
+#content ul.places li {
+	background-image: url(/static/img/icons/map.png);
+	background-position: left center;
+}
 p.see-all {
 	text-align: right;
 }
@@ -94,6 +98,13 @@ a.see-all {
 	background-image: url(/static/img/icons/resultset_next.png);
 	background-repeat: no-repeat;
 	background-position: right 0.35em;
+	white-space: nowrap;
+}
+
+#content .additional {
+	font-style: italic;
+	font-weight: normal;
+	color: #8B8B8B;
 	white-space: nowrap;
 }
 
@@ -182,6 +193,8 @@ div#content .meta p {
 }
 #content ul.listing li.item {
 	padding-left: 95px;
+	overflow: hidden;
+	zoom: 1;
 }
 #content ul.listing h2,
 #content ul.listing h3 {
