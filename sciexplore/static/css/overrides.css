@@ -162,7 +162,17 @@ div#header ul#top-nav {
 	background: white;
 }
 
-
+#content ol.nav {
+	background: #D2D2D2;
+	text-align: right;
+	padding-bottom: 5px;
+}
+#content ol.nav li {
+	display: inline;
+}
+#content ol.nav li.first a {
+	font-weight: bold;
+}
 div.page {
 	padding: 20px 20px 0 20px;
 	overflow: hidden;
