@@ -5,7 +5,18 @@
 
 {% block content %}
 
-<img src="http://www.sciencemuseum.org.uk/visitmuseum/galleries/cosmos_and_culture/~/media/Images/header/column_1/candcgif.ashx" alt="Cosmos &amp; Culture">
+<img src="http://www.sciencemuseum.org.uk/visitmuseum/galleries/cosmos_and_culture/~/media/Images/header/column_1/candcgif.ashx" alt="Cosmos &amp; Culture" class="main">
+
+<div class="intro">
+	<p>Explore how astronomy has changed the way we see our universe - and ourselves - through this object-rich exhibition. From ancient heritage to cutting edge technology, trace the history of people and the stars through different stories drawn from around the world.</p>
+
+	<p>Cosmos &amp; Culture uses a new multimedia display environment that allows you to explore objects in depth and find out about key scientific concepts. See how different instruments work, discover the stories of the people who made and used them, and enjoy beautiful models, illustrations and photographs.</p>
+
+	<p>Exhibition supported by the Patrons of the Science Museum with additional support from the Science and Technology Facilities Council, STFC.</p>
+
+	See more pictures of the exhibits on <a href="http://www.flickr.com/photos/sciencemuseum/sets/72157622795904954/">Flickr</a> and get behind the scenes with videos on our <a href="http://www.youtube.com/view_play_list?p=EB3C8735A76D5C10">YouTube channel</a>.
+</div>
+
 
 <p>We have <a href="/items/">{{ num_items }} items</a>, <a href="/people/">{{ num_people }} people</a> and organisations and <a href="/celestial-bodies/">{{ num_celestial_bodies }} celestial bodies</a>.</p>
 
@@ -18,5 +29,7 @@
     <input type="submit" value="Search">
   </p>
 </form>
+
+
 
 {% endblock %}

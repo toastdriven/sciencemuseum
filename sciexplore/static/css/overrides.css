@@ -317,3 +317,11 @@ div#content .meta p {
 	padding: 2px;
 	float: left;
 }
+
+.main-image {
+	float: left;
+}
+.intro {
+	width: 200px;
+	float: right;
+}
