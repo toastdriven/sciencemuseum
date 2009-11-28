@@ -16,7 +16,8 @@ jQuery(function($) {
     /* Now pull in the places */
     $('ul.places span').each(function() {
       var span = $(this);
-      geocoder.getLatLng(span.text(), function(point) {
+      var location = span.text().replace(', World', '');
+      geocoder.getLatLng(location, function(point) {
         var marker = new GMarker(point);
         map.addOverlay(marker);
         GEvent.addListener(marker, "click", function() {
