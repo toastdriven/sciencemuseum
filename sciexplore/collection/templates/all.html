@@ -1,16 +1,20 @@
-<style>
-ul, li {
-  list-style-type: none;
-}
-li {
-  padding-bottom: 10px;
-  width: 60%;
-  font-family: helvetica;
-  clear: both;
-}
-</style>
-<ul>
-{% for item in items %}
-  <li>{% if item.image %}<img align="left" src="{{ item.image_inline }}" width="75">{% endif %}<a href="{{ item.get_absolute_url }}">{{ item }}</a><br> {{ item.text|truncatewords:40 }}</li>
-{% endfor %}
+{% extends "base.html" %}
+
+{% block title %}All items in the Cosmos and Culture Exhibition{% endblock %}
+{% block pagetitle %}All items in the Cosmos and Culture Exhibition{% endblock %}
+
+{% block content %}
+
+<ul class="listing">
+	{% for item in items %}
+		<li class="item">
+			{% if item.image %}
+				<img src="{{ item.image_inline }}" width="75" alt="">
+			{% endif %}
+			<h3><a href="{{ item.get_absolute_url }}">{{ item.name }}</a>, {% if item.interpretative_date %}<span class="date-indicator">{{ item.interpretative_date }}</span>{% endif %}</h3>
+			
+			<p>{{ item.text|truncatewords:40 }} <a href="{{ item.get_absolute_url }}" class="see-all">read more</a></p>
+		</li>
+	{% endfor %}
 </ul>
+{% endblock %}

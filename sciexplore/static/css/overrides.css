@@ -88,11 +88,13 @@ p.download {
 p.see-all {
 	text-align: right;
 }
-p.see-all a {
-	padding: 3px 20px 2px 0;
+p.see-all a,
+a.see-all {
+	padding: 3px 17px 2px 0;
 	background-image: url(/static/img/icons/resultset_next.png);
 	background-repeat: no-repeat;
-	background-position: right center;
+	background-position: right 0.35em;
+	white-space: nowrap;
 }
 
 /* - STRUCTURE --------------------- */
