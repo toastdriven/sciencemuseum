@@ -1,5 +1,18 @@
-Running the project
--------------------
+http://cosmos.natimon.com/
+==========================
+
+An entry for the Science Museum's Cosmic Collections API competition, by 
+Natalie Downe and Simon Willison.
+
+http://cosmiccollections.pbworks.com/
+
+http://natbat.net/
+http://simonwillison.net/
+
+Read more about the project in about.txt.
+
+Running the project locally
+---------------------------
 
 Pre-requisites: Python, setuptools, pip and virtualenv
 
