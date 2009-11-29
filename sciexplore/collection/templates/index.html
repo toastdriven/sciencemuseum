@@ -47,7 +47,7 @@
 
 	<div class="home-col-2 home-col person">
 
-		<h2><a href="{{ person.get_absolute_url }}">{{ random_person }}</a> <span class="type-indicator">person</span></h2>
+		<h2><a href="{{ random_person.get_absolute_url }}">{{ random_person }}</a> <span class="type-indicator">person</span></h2>
 		<ul>
 			{% for pair in random_person_items|slice:":1" %}
 				<li>
