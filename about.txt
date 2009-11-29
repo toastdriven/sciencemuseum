@@ -72,6 +72,13 @@ Moon and a number of items that mention the moon in their description.
 
 http://cosmos.natimon.com/search/?q=moon
 
+Mis-typed words get a spelling correction suggestion:
+
+http://cosmos.natimon.com/search/?q=isacc
+
+The "no results" page still shows links to browse all items, people and 
+celestial bodies, to ensure users don't get stuck.
+
 How we built it
 ---------------
 
