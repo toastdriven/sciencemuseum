@@ -1,76 +1,136 @@
-
 Browsing and exploring
 ----------------------
-For our competition entry, we decided to explore the various different ways in which the collection could be navigated. We wanted to make the most of the metadata provided by the API, so we focused on creating a richly linked interface to encourage people to explore the collection in their own way, using a number of different potential routes.
+For our competition entry, we decided to explore the various different ways in
+which the collection could be navigated. We wanted to make the most of the
+metadata provided by the API, so we focused on creating a richly linked
+interface to encourage people to explore the collection in their own way,
+using a number of different potential routes.
 
-The primary object was the exhibition item, but we wanted to allow users to pivot on related people and celestial bodies as well. Consequently we created pages not just for every item but also for every person and celestial body.
+The primary object was the exhibition item, but we wanted to allow users to
+pivot on related people and celestial bodies as well. Consequently we created
+pages not just for every item but also for every person and celestial body.
 
-To further link together the collection, we derived related objects for each item using an algorithm based on the people / places / celestial bodies relationships.
+To further link together the collection, we derived related objects for each
+item using an algorithm based on the people / places / celestial bodies
+relationships.
 
 Item pages
 ----------
 
-We invested a lot of effort in the presentation of the item pages. Two features in particular add visual interest and some level of interactive flair.
+We invested a lot of effort in the presentation of the item pages. Two
+features in particular add visual interest and some level of interactive
+flair.
 
-The first is a map showing the places related to that item. This is designed to work both with and without JavaScript: if JavaScript is unavailable, a static map is displayed using the Google Static Maps API. With JavaScript, that static map is replaced by a dynamic, draggable map with clickable markers. This allows users to understand the geographical context of the item. 
+The first is a map showing the places related to that item. This is designed
+to work both with and without JavaScript: if JavaScript is unavailable, a
+static map is displayed using the Google Static Maps API. With JavaScript,
+that static map is replaced by a dynamic, draggable map with clickable
+markers. This allows users to understand the geographical context of the item.
 
-The second is a novel way of exploring the detail of the high resolution item images. We noted that a much larger version of each image is available, so we built in a magnifying glass using unobtrusive JavaScript. With JavaScript enabled, a small magnifier icon appears in the bottom right hand corner of the image. Click the icon and the larger image is fetched by the browser. Once loaded, the larger image is shown cropped in place of the small image, and the user can move their mouse over the area to explore the full image.
+The second is a novel way of exploring the detail of the high resolution item
+images. We noted that a much larger version of each image is available, so we
+built in a magnifying glass using unobtrusive JavaScript. With JavaScript
+enabled, a small magnifier icon appears in the bottom right hand corner of the
+image. Click the icon and the larger image is fetched by the browser. Once
+loaded, the larger image is shown cropped in place of the small image, and the
+user can move their mouse over the area to explore the full image.
 
-The high resolution image is also linked to as downloadable desktop wallpaper, to make best use of these wonderful images.
+The high resolution image is also linked to as downloadable desktop wallpaper,
+to make best use of these wonderful images.
 
-http://cosmos.natimon.com/item/2005-75/ - click the magnifying glass and try moving the mouse around the image.
+http://cosmos.natimon.com/item/2005-75/ - click the magnifying glass and try
+moving the mouse around the image.
 
 People pages
 ------------
 
-The people pages bring together the larger stories told by the collection. We show the items associated with each person in chronological order, based on the year component in the interpretative date provided by the API.
+The people pages bring together the larger stories told by the collection. We
+show the items associated with each person in chronological order, based on
+the year component in the interpretative date provided by the API.
 
 The page for William Herschel is a particularly good example of this:
 
 http://cosmos.natimon.com/person/32/
 
-With further information we could enhance these pages with pictures and biography text pulled from external sites such as Freebase and Wikipedia, to increase the user's connection to the person. The metadata currently provided by the API is not quite enough to automate this, as it does not uniquely and unambiguously identify the person in question and it mixes together people and organisations.
+With further information we could enhance these pages with pictures and
+biography text pulled from external sites such as Freebase and Wikipedia, to
+increase the user's connection to the person. The metadata currently provided
+by the API is not quite enough to automate this, as it does not uniquely and
+unambiguously identify the person in question and it mixes together people and
+organisations.
 
 Search
 ------
 
-Some users prefer to search, so we provide a full-text search interface. This is the only site feature that requires a server-side component - all other features are available as JavaScript and static HTML pages.
+Some users prefer to search, so we provide a full-text search interface. This
+is the only site feature that requires a server-side component - all other
+features are available as JavaScript and static HTML pages.
 
-The search engine operates against items, people and celestial bodies. For example, a search for "moon" returns pages for the moon itself, Francis Graham Moon and a number of items that mention the moon in their description.
+The search engine operates against items, people and celestial bodies. For
+example, a search for "moon" returns pages for the moon itself, Francis Graham
+Moon and a number of items that mention the moon in their description.
 
 http://cosmos.natimon.com/search/?q=moon
 
 How we built it
 ---------------
 
-Most of our data processing work was done using Python and the Django web framework. We started by analysing the XML output by the API using a simple tool written specially for the job (but now released separately): 
+Most of our data processing work was done using Python and the Django web
+framework. We started by analysing the XML output by the API using a simple
+tool written specially for the job (but now released separately):
 
 http://github.com/simonw/xml_analyser
 
-With the results of this analysis, we constructed a set of Django model definitions and used them to create a relational database representation of the data. We wrote an importer script that extracts the data and metadata from the XML and inserts it in to our database.
+With the results of this analysis, we constructed a set of Django model
+definitions and used them to create a relational database representation of
+the data. We wrote an importer script that extracts the data and metadata from
+the XML and inserts it in to our database.
 
-We then used Django's databrowse tool to further explore the data and build up a better understanding of what was there and how it related together. That tool can be seen here:
+We then used Django's databrowse tool to further explore the data and build up
+a better understanding of what was there and how it related together. That
+tool can be seen here:
 
 http://cosmos.natimon.com/databrowse/
 
-Next step was wireframing: we figured out the core pages and drew up wireframes illustrating the data to be presented on them:
+Next step was wireframing: we figured out the core pages and drew up
+wireframes illustrating the data to be presented on them:
 
 http://www.flickr.com/photos/nataliedowne/sets/72157622768712683/
 
-Finally, we built the site itself. We used Django and Django templates for the server-side components, and jQuery and the Google Maps API for the client-side JavaScript. We used the Whoosh search engine and the Haystack Django library to build the search interface.
+Finally, we built the site itself. We used Django and Django templates for the
+server-side components, and jQuery and the Google Maps API for the client-side
+JavaScript. We used the Whoosh search engine and the Haystack Django library
+to build the search interface.
 
 A few points to note
 --------------------
 
-Everything in our entry is derived automatically from the API. We did not manually edit or manipulate the data in any way. This means the site we have built can expand to accommodate new items published in the API without any need for manual intervention.
+Everything in our entry is derived automatically from the API. We did not
+manually edit or manipulate the data in any way. This means the site we have
+built can expand to accommodate new items published in the API without any
+need for manual intervention.
 
-Accessibility has been considered at all levels of the project. All links are understandable in isolation for better browsing with screen readers. Progressive enhancement techniques have been used to ensure any JavaScript features have a non-JavaScript fallback. The headings and titles have been designed with accessibility in mind. A further improvement improvement would be to add ARIA roles to the navigation and microformats to the people pages.
+Accessibility has been considered at all levels of the project. All links are
+understandable in isolation for better browsing with screen readers.
+Progressive enhancement techniques have been used to ensure any JavaScript
+features have a non-JavaScript fallback. The headings and titles have been
+designed with accessibility in mind. A further improvement improvement would
+be to add ARIA roles to the navigation and microformats to the people pages.
 
-The site as implemented should have excellent SEO. Correct levels of headings are used throughout, and we have ensured that search engines can easily crawl the site both by linking pages together and by providing complete listing pages for each type of item.
+The site as implemented should have excellent SEO. Correct levels of headings
+are used throughout, and we have ensured that search engines can easily crawl
+the site both by linking pages together and by providing complete listing
+pages for each type of item.
 
-For ease of deployment and integration we have reused the existing Science Museum design and linked directly to the current stylesheets.
+For ease of deployment and integration we have reused the existing Science
+Museum design and linked directly to the current stylesheets.
 
-While the site is currently hosted on our own server, we can output flat HTML files for the item, people and celestial body pages which can then easily be hosted elsewhere. A further planned improvement is a tool that automatically creates a zip file of the static HTML pages. The only feature with a server-side component is the search engine, which requires Python and SQLite (or MySQL, PostgreSQL or any other database with a Django adapter).
+While the site is currently hosted on our own server, we can output flat HTML
+files for the item, people and celestial body pages which can then easily be
+hosted elsewhere. A further planned improvement is a tool that automatically
+creates a zip file of the static HTML pages. The only feature with a
+server-side component is the search engine, which requires Python and SQLite
+(or MySQL, PostgreSQL or any other database with a Django adapter).
 
-We have confirmed that the site in Firefox, Safari and Google Chrome but we have not yet tested and debugged it in Internet Explorer.
-
+We have confirmed that the site in Firefox, Safari and Google Chrome but we
+have not yet tested and debugged it in Internet Explorer.
