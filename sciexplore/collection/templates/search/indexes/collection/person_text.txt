@@ -1,0 +1,7 @@
+{{ object.name }}
+
+{% for mobject, relations in object.items %}
+{% with mobject as object %}
+{% include 'search/indexes/collections/museumobject_text.txt' %}
+{% endwith %}
+{% endfor %}

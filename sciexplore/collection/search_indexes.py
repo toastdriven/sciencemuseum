@@ -1,24 +1,23 @@
 from haystack import indexes
 from haystack import site
-from models import MuseumObject, Person, CelestialBody
+from collection.models import MuseumObject, Person, CelestialBody
+
 
 class MuseumObjectIndex(indexes.SearchIndex):
-    text = indexes.CharField(document=True, model_attr='text')
-    def get_queryset(self):
-        return MuseumObject.objects.all()
+    text = indexes.CharField(document=True, use_template=True)
+    name = indexes.CharField(model_attr='name')
 
-site.register(MuseumObject, MuseumObjectIndex)
 
 class PersonIndex(indexes.SearchIndex):
-    text = indexes.CharField(document=True, model_attr='name')    
-    def get_queryset(self):
-        return Person.objects.all()
+    text = indexes.CharField(document=True, use_template=True)
+    name = indexes.CharField(model_attr='name')
 
-site.register(Person, PersonIndex)
 
 class CelestialBodyIndex(indexes.SearchIndex):
-    text = indexes.CharField(document=True, model_attr='common_name')    
-    def get_queryset(self):
-        return CelestialBody.objects.all()
+    text = indexes.CharField(document=True, use_template=True)
+    name = indexes.CharField(model_attr='common_name')
 
+
+site.register(MuseumObject, MuseumObjectIndex)
+site.register(Person, PersonIndex)
 site.register(CelestialBody, CelestialBodyIndex)

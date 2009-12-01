@@ -1,0 +1,10 @@
+{{ object.name }}
+{{ object.headline }}
+{{ object.credit }}
+{{ object.period_name }}
+
+{% for body in object.celestial_bodies.all %}
+{% with body as object %}
+{% include 'search/indexes/collection/celestialbody_text.txt' %}
+{% endwith %}
+{% endfor %}
